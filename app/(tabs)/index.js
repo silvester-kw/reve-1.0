@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from 'react-native';
 import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from 'react-native-popup-menu';
+import HelpCenterAccordion from '@/components/Accordion';
 
 export default function HomeScreen() {
   return (
@@ -30,13 +31,64 @@ export default function HomeScreen() {
               </MenuOptions>
             </Menu>
           </View>
-          <View>
-            <Text style={styles.fotobesar}>ini tempat foto</Text>
-          </View>
-          <View>
-            <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold', paddingTop: 20, paddingLeft: 20 }}>Catalogue</Text>
-          </View>
-
+          <ScrollView>
+            <View style={styles.heroContainer}>
+              <View style={styles.textContainer}>
+                <Text style={styles.heroText}>Change The Way You Dressed</Text>
+                <Text style={styles.heroText2}>Welcome to ReVe, Indonesia’s first diverse and circular fashion rental app</Text>
+              </View>
+              <Image
+                source={require('@/assets/images/herofoto.jpg')} // Use the imported image
+                style={styles.fotobesar}
+                resizeMode="cover"
+              />
+            </View>
+            <View>
+              <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold', marginTop: 20, marginLeft: 20 }}>Catalogue</Text>
+            </View>
+            <View style={styles.columnCatalogue}>
+              <View style={styles.row1}>
+                <View style={[styles.box1, styles.box]}>
+                  <Text style={styles.boxText}>Pants</Text>
+                  <Image
+                source={require('@/assets/images/pants.jpg')} // Use the imported image
+                style={styles.fotobesar}
+                resizeMode="cover"
+              />
+                </View>
+                <View style={[styles.box2, styles.box]}>
+                <Text style={styles.boxText}>Shirts</Text>
+                  <Image
+                source={require('@/assets/images/shirts.jpg')} // Use the imported image
+                style={styles.fotobesar}
+                resizeMode="cover"
+              />
+                </View>
+              </View>
+              <View style={styles.row2}>
+                <View style={[styles.box3, styles.box]}>
+                <Text style={styles.boxText}>Skirts</Text>
+                  <Image
+                source={require('@/assets/images/skirts.jpg')} // Use the imported image
+                style={styles.fotobesar}
+                resizeMode="cover"
+              />
+                </View>
+                <View style={[styles.box4, styles.box]}>
+                <Text style={styles.boxText}>Sweater</Text>
+                  <Image
+                source={require('@/assets/images/sweater.jpg')} // Use the imported image
+                style={styles.fotobesar}
+                resizeMode="cover"
+              />
+                </View>
+              </View>
+            </View>
+            <View>
+              <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold', marginTop: 20, marginLeft: 20, marginBottom: 10 }}>Help Center</Text>
+            </View>
+            <HelpCenterAccordion />
+          </ScrollView>
         </View>
       </SafeAreaView>
     </MenuProvider>
@@ -52,6 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    position: 'relative',
   },
   header: {
     width: '100%',
@@ -61,6 +114,46 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between', // Ensures space between the items
     paddingHorizontal: 10,
+  },
+  test:{
+    fontSize: 24,
+  },
+  columnCatalogue: {
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 5,
+    backgroundColor: '#fff', 
+    flexDirection: 'column',
+    justifyContent: 'space-evenly'
+  },
+  row1: {
+    flexDirection: 'row', 
+    justifyContent: 'space-around'
+  },
+  row2: {
+    marginTop: 30,
+    flexDirection: 'row', 
+    justifyContent: 'space-around'
+  },
+  box: {
+    height: 120,
+    width: 163,
+    alignItems: 'center', //kanan kiri
+    justifyContent: 'center', //atas bawah
+    borderRadius: 10,
+    overflow: 'hidden'
+  },
+  box1: {
+    backgroundColor: 'red',
+  },
+  box2: {
+    backgroundColor: 'cyan',
+  },
+  box3: {
+    backgroundColor: 'green',
+  },
+  box4: {
+    backgroundColor: 'yellow',
   },
   logo: {
     width: 40,
@@ -85,9 +178,41 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
   },
+  heroContainer: {
+    width: '100%', // Adjust the width of the container as needed
+    height: 200, // Adjust the height of the container as needed
+    overflow: 'hidden', // This will clip the image to the container bounds
+  },
   fotobesar: {
-    fontSize: 80,
-    textAlign: 'center',
-    backgroundColor: '#f00',
+    width: '100%',
+    height: '100%',
+  },
+  heroText:{
+    fontSize: 15,
+    color: 'white', // Adjust text color as needed
+    fontWeight: 'bold',  textShadowOffset: { width: 2, height: 2 }, textShadowRadius: 5,
+  },
+  boxText:{
+    fontSize: 25,
+    color: 'white', // Adjust text color as needed
+    fontWeight: 'bold',  textShadowOffset: { width: 2, height: 2 }, textShadowRadius: 5,
+    zIndex: 1,
+    position: 'absolute',
+  },
+  heroText2:{
+    fontSize: 13,
+    color: 'white', 
+    width: '40%',
+    marginTop: 10,
+    flexShrink: 1,
+  },
+  textContainer: {
+    position: 'absolute',
+    left: 175,
+    paddingRight: 30,
+    top: 40,
+    zIndex: 1, 
   },
 });
+
+
