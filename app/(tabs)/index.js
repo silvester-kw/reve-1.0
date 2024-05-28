@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from 'react-native';
 import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from 'react-native-popup-menu';
 import HelpCenterAccordion from '@/components/Accordion';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
 
 export default function HomeScreen() {
   return (
@@ -9,40 +11,9 @@ export default function HomeScreen() {
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
-          <View style={styles.header}>
-            <Image
-              source={require('@/assets/images/reve-icon.png')} // Use the imported image
-              style={styles.logo}
-            />
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Home</Text>
-            </View>
-            <Menu>
-              <MenuTrigger>
-                <Image
-                  source={require('@/assets/images/reve-icon.png')} // Replace with your profile icon path
-                  style={styles.profileLogo}
-                />
-              </MenuTrigger>
-              <MenuOptions>
-                <MenuOption onSelect={() => alert('Log Out')}>
-                  <Text style={styles.menuText}>Log Out</Text>
-                </MenuOption>
-              </MenuOptions>
-            </Menu>
-          </View>
+        <Header title="Home" />
           <ScrollView>
-            <View style={styles.heroContainer}>
-              <View style={styles.textContainer}>
-                <Text style={styles.heroText}>Change The Way You Dressed</Text>
-                <Text style={styles.heroText2}>Welcome to ReVe, Indonesia’s first diverse and circular fashion rental app</Text>
-              </View>
-              <Image
-                source={require('@/assets/images/herofoto.jpg')} // Use the imported image
-                style={styles.fotobesar}
-                resizeMode="cover"
-              />
-            </View>
+            <Hero />
             <View>
               <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold', marginTop: 20, marginLeft: 20 }}>Catalogue</Text>
             </View>
@@ -178,40 +149,12 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
   },
-  heroContainer: {
-    width: '100%', // Adjust the width of the container as needed
-    height: 200, // Adjust the height of the container as needed
-    overflow: 'hidden', // This will clip the image to the container bounds
-  },
-  fotobesar: {
-    width: '100%',
-    height: '100%',
-  },
-  heroText:{
-    fontSize: 15,
-    color: 'white', // Adjust text color as needed
-    fontWeight: 'bold',  textShadowOffset: { width: 2, height: 2 }, textShadowRadius: 5,
-  },
   boxText:{
     fontSize: 25,
     color: 'white', // Adjust text color as needed
     fontWeight: 'bold',  textShadowOffset: { width: 2, height: 2 }, textShadowRadius: 5,
     zIndex: 1,
     position: 'absolute',
-  },
-  heroText2:{
-    fontSize: 13,
-    color: 'white', 
-    width: '40%',
-    marginTop: 10,
-    flexShrink: 1,
-  },
-  textContainer: {
-    position: 'absolute',
-    left: 175,
-    paddingRight: 30,
-    top: 40,
-    zIndex: 1, 
   },
 });
 

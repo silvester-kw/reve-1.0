@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
+import Header from "../../components/Header";
 
 const initialItems = [
   {
@@ -36,6 +37,7 @@ export default function Bag() {
 
   return (
     <View style={styles.container}>
+             {/* <Header title="Home" /> */}
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}

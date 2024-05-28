@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
 import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
+import Header from "../../components/Header";
 
 const initialItems = [
   {
@@ -25,31 +26,6 @@ const initialItems = [
 
 export default function Closet() {
   const [items, setItems] = useState(initialItems);
-
-  const header = () => (
-    <View style={styles.header}>
-      <Image
-        source={require("@/assets/images/reve-icon.png")} // Use the imported image
-        style={styles.logo}
-      />
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>My Closet</Text>
-      </View>
-      <Menu>
-        <MenuTrigger>
-          <Image
-            source={require("@/assets/images/pp-icon.png")} // Replace with your profile icon path
-            style={styles.profileLogo}
-          />
-        </MenuTrigger>
-        <MenuOptions>
-          <MenuOption onSelect={() => alert("Log Out")}>
-            <Text style={styles.menuText}>Log Out</Text>
-          </MenuOption>
-        </MenuOptions>
-      </Menu>
-    </View>
-  );
   const renderItem = ({ item }) => (
     <View style={styles.item}>
       <Image source={{ uri: item.image }} style={styles.image} />
@@ -72,7 +48,7 @@ export default function Closet() {
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
-          {header()}
+        <Header title="Closet" />
 
           <FlatList data={items} keyExtractor={(item) => item.id} renderItem={renderItem} />
         </View>

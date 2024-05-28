@@ -1,6 +1,5 @@
 import { Tabs } from "expo-router";
 import React from "react";
-
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
@@ -42,10 +41,10 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="space"
+        name="catalogue"
         options={{
-          title: "Space",
-          headerTitle: "My Space",
+          title: "Catalogue",
+          headerTitle: "catalogue",
           tabBarIcon: ({ color, focused }) => <TabBarIcon name={focused ? "star" : "star-outline"} color={color} />,
         }}
       />
