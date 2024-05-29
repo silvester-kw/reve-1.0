@@ -17,12 +17,14 @@
       "supportsTablet": true
     },
     "android": {
-      "googleServicesFile": "google-services.json",
+      // "googleServicesFile": "google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.reveid.reve"
+      // "package": "com.reveid.reve",
+      "googleServicesFile": "./google-services.json",
+      "package": "com.reve.reve"
     },
     "web": {
       "bundler": "metro",
@@ -39,7 +41,9 @@
             "useFrameworks": "static"
           }
         }
-      ]
+      ],
+      "@react-native-firebase/auth",
+      "@react-native-firebase/crashlytics"
     ],
     "experiments": {
       "typedRoutes": true
