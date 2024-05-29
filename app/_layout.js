@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import "react-native-reanimated";
 
 import { UserProvider } from "@/hooks/useUser";
+import { PaperProvider } from "react-native-paper";
 
 // import auth from "@react-native-firebase/auth";
 
@@ -90,13 +91,16 @@ export default function RootLayout() {
   // }
 
   return (
-    <UserProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </ThemeProvider>
-    </UserProvider>
+    <PaperProvider>
+      <UserProvider>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </ThemeProvider>
+      </UserProvider>
+    </PaperProvider>
   );
 }
