@@ -12,10 +12,11 @@ const Space = () => {
         <View style={styles.container}>
           <Header title="Catalogue" />
           <ScrollView>
-          <Hero />
+            <Hero />
             <View>
-              <Text style={{ color: '#000', fontSize: 16, fontWeight: 'bold', marginTop: 20, marginLeft: 20 }}>Shirts</Text>
+              <Text className="font-bold text-xl">Shirts</Text>
             </View>
+            <View>// disini</View>
           </ScrollView>
         </View>
       </SafeAreaView>
