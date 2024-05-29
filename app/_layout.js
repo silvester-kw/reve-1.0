@@ -91,8 +91,8 @@ export default function RootLayout() {
   // }
 
   return (
-    <PaperProvider>
-      <UserProvider>
+    <UserProvider>
+      <PaperProvider>
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
           <Stack>
@@ -100,7 +100,7 @@ export default function RootLayout() {
             <Stack.Screen name="+not-found" />
           </Stack>
         </ThemeProvider>
-      </UserProvider>
-    </PaperProvider>
+      </PaperProvider>
+    </UserProvider>
   );
 }
