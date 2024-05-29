@@ -2220,6 +2220,20 @@
     opencollective-postinstall "^2.0.3"
     superstruct "^0.6.2"
 
+"@react-native-firebase/auth@^20.0.0":
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-20.0.0.tgz#104f0a692153f4d0cd9c0c42854d7bf1521bd271"
+  integrity sha512-/3cjoSjF6U27orj0qPxrqHs1/CNvEBjIK2Kv01aBNSKhGlxxMBXq4Dctolnx6hYuDA83td8SmTtFZM6C17G3Ug==
+  dependencies:
+    plist "^3.1.0"
+
+"@react-native-firebase/crashlytics@^20.0.0":
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-20.0.0.tgz#ced4fe82b6b3d7ae6ad4b4934e3b92357e4f1a8a"
+  integrity sha512-xRh7q/+l3On+w6QJe6KjTxuI7CDwsBYj6tuqakkTPcjiTMu89OuDlAoQyQ+veaRKw3TFMT6HNvS1s6saJm+GIg==
+  dependencies:
+    stacktrace-js "^2.0.2"
+
 "@react-native-firebase/database@^20.0.0":
   version "20.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-20.0.0.tgz#04393f5944e86640be32d397dc1cfb1246855a5b"
@@ -7226,7 +7240,7 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-plist@^3.0.5:
+plist@^3.0.5, plist@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/plist/-/plist-3.1.0.tgz#797a516a93e62f5bde55e0b9cc9c967f860893c9"
   integrity sha512-uysumyrvkUX0rX/dEVqt8gC3sTBzd4zoWfLeS29nb53imdaXVvLINYXTI2GNqzaMuvacNx4uJQ8+b3zXR0pkgQ==
