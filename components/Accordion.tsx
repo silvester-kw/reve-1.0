@@ -43,6 +43,7 @@ const HelpCenterAccordion: React.FC = () => {
       data={DATA}
       keyExtractor={(item) => item.id}
       renderItem={renderItem}
+      scrollEnabled={false}
     />
   );
 };
