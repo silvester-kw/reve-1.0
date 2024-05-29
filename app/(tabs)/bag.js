@@ -35,37 +35,43 @@ export default function Bag() {
     return items.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
   };
 
+  const renderItem = ({ item }) => (
+    <View style={styles.item}>
+      <Image source={{ uri: item.image }} style={styles.image} />
+      <View style={styles.details}>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.price}>${item.price.toFixed(2)}</Text>
+        <View style={styles.quantityContainer}>
+          <TouchableOpacity onPress={() => decreaseQuantity(item.id)} style={styles.button}>
+            <Text style={styles.buttonText}>-</Text>
+          </TouchableOpacity>
+          <Text style={styles.quantity}>{item.quantity}</Text>
+          <TouchableOpacity onPress={() => increaseQuantity(item.id)} style={styles.button}>
+            <Text style={styles.buttonText}>+</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+
+  const listBottomComponent = () => (
+    <View style={styles.totalContainer}>
+      <Text style={styles.totalText}>Total: ${calculateTotal()}</Text>
+      <TouchableOpacity style={styles.checkoutButton}>
+        <Text style={styles.checkoutButtonText}>Checkout</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
              {/* <Header title="Home" /> */}
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Image source={{ uri: item.image }} style={styles.image} />
-            <View style={styles.details}>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.price}>${item.price.toFixed(2)}</Text>
-              <View style={styles.quantityContainer}>
-                <TouchableOpacity onPress={() => decreaseQuantity(item.id)} style={styles.button}>
-                  <Text style={styles.buttonText}>-</Text>
-                </TouchableOpacity>
-                <Text style={styles.quantity}>{item.quantity}</Text>
-                <TouchableOpacity onPress={() => increaseQuantity(item.id)} style={styles.button}>
-                  <Text style={styles.buttonText}>+</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        )}
+        renderItem={renderItem}
+        ListFooterComponent={listBottomComponent}
       />
-      <View style={styles.totalContainer}>
-        <Text style={styles.totalText}>Total: ${calculateTotal()}</Text>
-        <TouchableOpacity style={styles.checkoutButton}>
-          <Text style={styles.checkoutButtonText}>Checkout</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
