@@ -1,0 +1,9 @@
+{
+  "product-name": "Dungaree Gather Skirt",
+  "price": "15.000",
+  "size": "XL",
+  "description": "The final chapter of the collaboration with Ines de la Fressange, synonymous with the timeless appeal of French chic. Dungaree fabric with a casual feel. Airy, gathered cut. Elegant long length. Elastic waist for easy outfit changes. Internal waist drawstring for size adjustment. Voluminous paneled design."
+  }
+
+
+

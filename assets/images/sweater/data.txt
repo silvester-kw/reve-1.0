@@ -1,0 +1,11 @@
+{
+    id: "1",
+    name: "Sweat Long Sleeve Shirt",
+    brand: "UNIQLO",
+    price: 30000,
+    size: "L",
+    category: "sweater",
+    image: "/assets/images/shirts/shirt1.png",
+    description:
+      "Smooth touch on the inside and out. Special looped lining prevents pilling. Classic V-insert and long ribbing at the neckline. Neck tape helps the collar keep its shape even after repeated washing. Versatile regular silhouette.",
+  }

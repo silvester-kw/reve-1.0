@@ -1,0 +1,6 @@
+{
+  "product-name": "AIRism Cotton Easy Shorts",
+  "price": "15.000",
+  "size": "XL",
+  "description": "Smooth ‘AIRism’ made with slub yarns for a casual style. Pockets on both sides. Elastic waist for easy outfit changes. Adjustable drawstring waist."
+  }

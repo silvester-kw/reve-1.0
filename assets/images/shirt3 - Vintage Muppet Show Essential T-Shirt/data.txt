@@ -1,0 +1,9 @@
+{
+  "product-name": "Vintage Muppet Show Essential T-Shirt",
+  "price": "10.000",
+  "size": "S",
+  "description": "Just your everyday smooth, comfy tee, a wardrobe staple. Slim fit, so size up if you prefer a looser fit, or check out the Classic T-Shirt. Midweight 4.2 oz. / 145 gsm fabric, solid color t-shirts are 100% cotton, heather grey t-shirts are 90% cotton/10% polyester charcoal heather t-shirts are 52% cotton/48% polyester."
+  }
+
+
+

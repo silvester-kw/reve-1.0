@@ -1,0 +1,9 @@
+{
+  "product-name": "Mischief Classic T-Shirt",
+  "price": "10.000",
+  "size": "M",
+  "description": "The standard, traditional t-shirt for everyday wear. Heavyweight 5.3 oz / 180 gsm fabric, solid colors are 100% preshrunk cotton, heather grey is 90% cotton/10% polyester, denim heather is 50% cotton/ 50% polyester. Double-needle hems and neck band for durability."
+  }
+
+
+

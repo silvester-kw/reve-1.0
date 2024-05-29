@@ -1,0 +1,9 @@
+{
+  "product-name": "Grumpy Frog - Matsumoto Hoji Classic T-Shirt",
+  "price": "20.000",
+  "size": "XL",
+  "description": "The standard, traditional t-shirt for everyday wear. Classic, generous, boxy fit. Heavyweight 5.3 oz / 180 gsm fabric, solid colors are 100% preshrunk cotton, heather grey is 90% cotton/10% polyester, denim heather is 50% cotton/ 50% polyester. Double-needle hems and neck band for durability."
+  }
+
+
+

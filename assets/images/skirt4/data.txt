@@ -1,0 +1,6 @@
+{
+  "product-name": "Smart Skort (Check)",
+  "price": "20.000",
+  "size": "L",
+  "description": "Elegant fabric with plenty of stretch. Wrap design at the front looks like a skirt. Shorts on the inside make them perfect for active wear. Elastic waist at the back. Accent check pattern. Suitable for business or casual wear."
+  }

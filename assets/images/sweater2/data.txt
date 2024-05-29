@@ -1,0 +1,13 @@
+{
+    id: "2",
+    name: "Washable Milano Ribbed Crew Neck Long Sleeve Sweater (Striped)",
+    brand: "UNIQLO",
+    price: 30000,
+    size: "L",
+    category: "sweater",
+    image: "/assets/images/shirts/shirt1.png",
+    description:
+      "Knit with alternating cotton-rayon and polyester threads for a crisp, stretchy fabric that retains its shape. The cut showcases the texture of the fabric. Ribbed hems and cuffs join seamlessly to the body. Ribbed collar seam positioned to minimize skin irritation. Cuff accent stripe placement varies across sizes. Combines the ease of a sweatshirt and the elegance of a knit",
+  },
+
+

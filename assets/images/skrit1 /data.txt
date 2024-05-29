@@ -1,0 +1,6 @@
+{
+  "product-name": "Shirring Skirt",
+  "price": "20.000",
+  "size": "XL",
+  "description": "Wrinkle-resistant cotton-nylon blend. Lined sheer skirt. Comfortable elastic waist. Shirring creates a sleek look around the midsection. Shell: 100% Cotton/ Lining: 100% Polyester."
+  }

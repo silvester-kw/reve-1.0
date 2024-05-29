@@ -1,0 +1,9 @@
+{
+  "product-name": "Smart Ankle Pants (Cotton)",
+  "price": "20.000",
+  "size": "XL",
+  "description": "2-way stretch fabric for a comfortable fit. Smooth cotton twill fabric made from fine-count yarn. Tapered, ankle-length cut with a slim fit. Sleek seam pockets at the sides. Comfortable elastic waistband offers a classic look with a tucked-in top. Suitable for casual or more elegant occasions."
+  }
+
+
+

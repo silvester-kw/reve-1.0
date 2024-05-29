@@ -1,0 +1,6 @@
+{
+  "product-name": "Drapey Denim Pleated Pants",
+  "price": "20.000",
+  "size": "XL",
+  "description": "Incredibly soft denim made from a lyocell and cotton blend. Stylish pleats at the front. Elastic waist at the back for easy outfit changes. Full-length, wide-leg straight cut. BLUE CYCLE JEANS technology reduces the volume of water* used in the finishing process. Water savings may vary between products."
+  }

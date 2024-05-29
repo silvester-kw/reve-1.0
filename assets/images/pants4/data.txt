@@ -1,0 +1,6 @@
+{
+  "product-name": "Linen Blend Easy Pants",
+  "price": "20.000",
+  "size": "XL",
+  "description": "Made with a rayon-linen-cotton blend fabric for a natural slub look. Pre-washed for a casual feel. Elasticized, drawstring waist. Front tucks. Pockets on both sides. Relaxed fit. A casual and comfortable item for relaxing at home or wearing out and about."
+  }

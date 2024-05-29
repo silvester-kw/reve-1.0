@@ -1,0 +1,7 @@
+{
+  "product-name": "Linen Blend Belted Flared Skirt",
+  "price": "20.000",
+  "size": "XL",
+  "description": "New LifeWear that combines UNIQLO’s focus on design, fit, fabric, and functionality with JW ANDERSON’s focus on traditional British apparel into innovative designs. In pretty good condition. Only available for 1 pax."
+  }
+
