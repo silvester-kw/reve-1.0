@@ -17,4 +17,7 @@ web-build/
 
 expo-env.d.ts
 # @end expo-cli
-node_modules
+node_modules/
+
+.anima/
+.vscode/
