@@ -14,7 +14,7 @@ const MyFlatList = () => {
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => {
-            router.push(`./${item.id}?name=${item.name}&brand=${item.brand}&size=${item.size}&image=${item.image}&description=${item.description}`);
+            router.push(`./${item.id}?name=${item.name}&brand=${item.brand}&size=${item.size}&image=${item.image}&description=${item.description}&price=${item.price}`);
           }}
           style={styles.item}
         >
@@ -44,7 +44,7 @@ const ShirtCatalogue = () => {
           <ScrollView>
             <Hero />
             <View>
-              <Text style={{ fontSize: 16, marginLeft: 16, fontWeight: "500", marginBottom: 16, marginTop: 8 }}>Shirts</Text>
+            <Text style={{ color: "#000", fontSize: 16, fontWeight: "bold", marginTop: 20, marginLeft: 20 }}>Shirt</Text>
             </View>
             <View style={{ marginHorizontal: 16 }}>
               <MyFlatList />
