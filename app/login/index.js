@@ -4,10 +4,6 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useUser } from "@/hooks/useUser";
 import { Button, TextInput } from "react-native-paper";
 
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import { useRouter } from "expo-router";
 
 export default function Login() {
