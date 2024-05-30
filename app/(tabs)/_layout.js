@@ -41,10 +41,10 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="catalogue"
+        name="space"
         options={{
-          title: "Catalogue",
-          headerTitle: "catalogue",
+          title: "space",
+          headerTitle: "Space",
           tabBarIcon: ({ color, focused }) => <TabBarIcon name={focused ? "star" : "star-outline"} color={color} />,
         }}
       />
