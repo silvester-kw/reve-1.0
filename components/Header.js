@@ -25,14 +25,10 @@ import { Avatar } from "react-native-paper";
 import { useUser } from "@/hooks/useUser";
 
 export default function Header({ title }) {
-  const user = useUser();
+  const { user, logout } = useUser();
 
-  const onAvatarPress = () => {
-    if (user) {
-      alert("Log Out");
-    } else {
-      alert("Log In");
-    }
+  const onLogout = () => {
+    logout();
   };
 
   return (
@@ -53,13 +49,13 @@ export default function Header({ title }) {
             />
           </MenuTrigger>
           <MenuOptions>
-            <MenuOption onSelect={onAvatarPress}>
+            <MenuOption onSelect={onLogout}>
               <Text style={styles.menuText}>Log Out</Text>
             </MenuOption>
           </MenuOptions>
         </Menu>
       ) : (
-        <TouchableOpacity onPress={onAvatarPress}>
+        <TouchableOpacity>
           <Link href="/login">
             <Avatar.Image
               size={40}
