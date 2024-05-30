@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
-import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
+
 import Header from "../../components/Header";
 import { Shirts } from "../../data/shirts";
 const initialItems = [
@@ -44,7 +44,7 @@ export default function Closet() {
   );
 
   return (
-    <MenuProvider>
+    <>
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
@@ -53,7 +53,7 @@ export default function Closet() {
           <FlatList data={items} keyExtractor={(item) => item.id} renderItem={renderItem} />
         </View>
       </SafeAreaView>
-    </MenuProvider>
+    </>
   );
 }
 
