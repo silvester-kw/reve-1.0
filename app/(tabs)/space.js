@@ -15,49 +15,42 @@ const Space = () => {
           <Header title="My Space" />
           <ScrollView>
             <View style={styles.gold}>
-              <Image source={{ uri: "@/assets/images/gold.png" }} style={styles.image} />
+              <Image source={require("@/assets/images/gold.png")} style={styles.image} />
             </View>
             <View style={styles.tabs}>
               <TouchableOpacity
-                style={styles.tab}
-                className="bg-black w-fit"
-                onPress={() => {
-                  setTab("missions");
-                }}
+                style={[styles.tab, tab === "missions" && styles.activeTab]}
+                onPress={() => setTab("missions")}
               >
-                <Text>Missions</Text>
+                <Text style={styles.tabText}>Missions</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                className="bg-black w-fit"
-                onPress={() => {
-                  setTab("perks");
-                }}
+                style={[styles.tab, tab === "perks" && styles.activeTab]}
+                onPress={() => setTab("perks")}
               >
-                <Text>Perks</Text>
+                <Text style={styles.tabText}>Perks</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                className="bg-black w-fit"
-                onPress={() => {
-                  setTab("contributions");
-                }}
+                style={[styles.tab, tab === "contributions" && styles.activeTab]}
+                onPress={() => setTab("contributions")}
               >
-                <Text>Contributions</Text>
+                <Text style={styles.tabText}>Contributions</Text>
               </TouchableOpacity>
             </View>
-            <View>
-              {tab == "missions" && (
-                <View style={{ height: "60vh" }}>
-                  <Image source={{ uri: "@/assets/images/missions.png" }} style={styles.image} />
+            <View style={styles.tabContent}>
+              {tab === "missions" && (
+                <View style={styles.imageContainer}>
+                  <Image source={require("@/assets/images/missions.png")} style={styles.image} />
                 </View>
               )}
-              {tab == "perks" && (
-                <View style={{ height: "60vh" }}>
-                  <Image source={{ uri: "@/assets/images/perks.png" }} style={styles.image} />
+              {tab === "perks" && (
+                <View style={styles.imageContainer}>
+                  <Image source={require("@/assets/images/perks.png")} style={styles.image} />
                 </View>
               )}
-              {tab == "contributions" && (
-                <View style={{ height: "60vh" }}>
-                  <Image source={{ uri: "@/assets/images/contributions.png" }} style={styles.image} />
+              {tab === "contributions" && (
+                <View style={styles.imageContainer}>
+                  <Image source={require("@/assets/images/contributions.png")} style={styles.image} />
                 </View>
               )}
             </View>
@@ -75,17 +68,25 @@ const styles = StyleSheet.create({
   },
   tab: {
     flex: 1,
-    textAlign: "center",
-    padding: "10px 0",
-    cursor: "pointer",
-    border: "1px solid #ccc",
+    alignItems: "center",
+    paddingVertical: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: "transparent",
+  },
+  activeTab: {
+    borderBottomColor: "#000",
+  },
+  tabText: {
+    color: "#000",
+    fontWeight: "bold",
   },
   tabs: {
-    flex: 1,
+    flexDirection: "row",
     justifyContent: "space-around",
     width: "100%",
     backgroundColor: "#f1f1f1",
-    borderBottom: "1px solid #ccc",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
   },
   container: {
     flex: 1,
@@ -95,11 +96,25 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+    resizeMode: "contain",
+  },
+  imageContainer: {
+    width: "100%",
+    height: 300, // Adjust height as needed
+    justifyContent: "center",
+    alignItems: "center",
   },
   gold: {
     width: "100%",
-    height: "150px",
-    backgroundColor: "#ff0",
+    height: 150,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  tabContent: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
   },
 });
 
