@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
 import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
 import Header from "../../components/Header";
-import { Shirts } from "../../data/shirts";
+
 const initialItems = [
   {
     id: "1",
@@ -25,7 +25,7 @@ const initialItems = [
 ];
 
 export default function Closet() {
-  const [items, setItems] = useState(Shirts);
+  const [items, setItems] = useState(initialItems);
   const renderItem = ({ item }) => (
     <View style={styles.item}>
       <Image source={{ uri: item.image }} style={styles.image} />
@@ -48,7 +48,7 @@ export default function Closet() {
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
-          <Header title="Closet" />
+        <Header title="Closet" />
 
           <FlatList data={items} keyExtractor={(item) => item.id} renderItem={renderItem} />
         </View>

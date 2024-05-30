@@ -1,40 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image, ScrollView } from "react-native";
 import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
-import Header from "@/components/Header";
+import Header from "../../components/Header";
 import Hero from "@/components/Hero";
-import { useRouter } from "expo-router";
-import { Shirts } from "../../../data/shirts";
 
-const MyFlatList = () => {
-  const router = useRouter();
-  return (
-    <FlatList
-      data={Shirts}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          onPress={() => {
-            router.push(`./${item.id}?name=${item.name}&brand=${item.brand}&size=${item.size}&image=${item.image}&description=${item.description}`);
-          }}
-          style={styles.item}
-        >
-          <View style={{ width: "100%%", alignItems: "center", borderRadius: 8, borderWidth: 1 }}>
-            <Image source={{ uri: item.image }} style={styles.image} />
-            <Text style={styles.name}>{item.name}</Text>
-            <View style={styles.priceAndSizeContainer}>
-              <Text style={styles.price}>Rp{item.price}</Text>
-            </View>
-            <Text style={styles.size}>Size: {item.size}</Text>
-          </View>
-        </TouchableOpacity>
-      )}
-      keyExtractor={(item) => item.id.toString()}
-      numColumns={2}
-    />
-  );
-};
-
-const ShirtCatalogue = () => {
+const Space = () => {
   return (
     <MenuProvider>
       <SafeAreaView style={styles.safeArea}>
@@ -46,9 +16,7 @@ const ShirtCatalogue = () => {
             <View>
               <Text className="font-bold text-xl">Shirts</Text>
             </View>
-            <View style={{ marginHorizontal: 16 }}>
-              <MyFlatList />
-            </View>
+            <View>// disini</View>
           </ScrollView>
         </View>
       </SafeAreaView>
@@ -66,9 +34,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
+  item: {
+    flexDirection: "row",
+    padding: 16,
+    marginBottom: 16,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
   image: {
     width: 100,
     height: 100,
+    marginRight: 16,
   },
   details: {
     flex: 1,
@@ -107,8 +87,9 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: "#000",
     flexDirection: "row",
-    alignContent: "center",
+    alignItems: "center",
     justifyContent: "space-between", // Ensures space between the items
+    paddingHorizontal: 10,
   },
   logo: {
     width: 40,
@@ -133,40 +114,6 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
   },
-  item: {
-    flexDirection: "column",
-    flexWrap: "wrap",
-    padding: 12,
-    backgroundColor: "#999",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 12,
-    width: "50%",
-  },
-  image: {
-    width: 100, // Adjust image width and height as needed
-    height: 100,
-    marginRight: 16, // Add margin for spacing
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
-  priceAndSizeContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    flex: 1,
-    width: "full",
-  },
-  price: {
-    fontSize: 14,
-    color: "#666",
-  },
-  size: {
-    fontSize: 14,
-    color: "#666",
-  },
 });
 
-export default ShirtCatalogue;
+export default Space;
