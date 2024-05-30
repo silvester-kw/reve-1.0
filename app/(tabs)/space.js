@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image, ScrollView } from "react-native";
+import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
 
 import Header from "../../components/Header";
 import Hero from "@/components/Hero";
@@ -40,17 +40,17 @@ const Space = () => {
             <View style={styles.tabContent}>
               {tab === "missions" && (
                 <View style={styles.imageContainer}>
-                  <Image source={require("@/assets/images/missions.png")} style={styles.image} />
+                  <Image source={require("@/assets/images/missions.png")} style={styles.imageMissions} />
                 </View>
               )}
               {tab === "perks" && (
                 <View style={styles.imageContainer}>
-                  <Image source={require("@/assets/images/perks.png")} style={styles.image} />
+                  <Image source={require("@/assets/images/perks.png")} style={styles.imagePerks} />
                 </View>
               )}
               {tab === "contributions" && (
                 <View style={styles.imageContainer}>
-                  <Image source={require("@/assets/images/contributions.png")} style={styles.image} />
+                  <Image source={require("@/assets/images/contributions.png")} style={styles.imageContributions} />
                 </View>
               )}
             </View>
@@ -93,6 +93,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
+  imageMissions: {
+    width: 400,
+    height: 500,
+    resizeMode: "cover",
+
+  },
+  imagePerks: {
+    width: 400,
+    height: 500,
+    resizeMode: "cover",
+  },
+  imageContributions: {
+    width: 400,
+    height: 500,
+    resizeMode: "cover",
+  },
   image: {
     width: "100%",
     height: "100%",
@@ -100,7 +116,6 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "100%",
-    height: 300, // Adjust height as needed
     justifyContent: "center",
     alignItems: "center",
   },
@@ -111,10 +126,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   tabContent: {
-    flex: 1,
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
+    // padding: 20,
   },
 });
 
