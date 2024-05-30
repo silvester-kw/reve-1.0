@@ -1,9 +1,21 @@
-import { Image, View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import {
+  Image,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React from "react";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 export default function Page() {
-  const { id, name, brand, image, size, description, price } = useLocalSearchParams();
+  const router = useRouter();
+
+  const { id, name, brand, image, size, description, price } =
+    useLocalSearchParams();
+  const clothe = { id, name, brand, image, size, description, price };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.imageContainer}>
@@ -15,12 +27,16 @@ export default function Page() {
         <Text style={styles.size}>Size: {size}</Text>
         <Text style={styles.description}>{description}</Text>
         <View>
-        {/* <TouchableOpacity style={styles.addToBagButton}>
+          {/* <TouchableOpacity style={styles.addToBagButton}>
           <Text style={styles.buttonText}>Add to Bag</Text>
         </TouchableOpacity> */}
-        <TouchableOpacity style={styles.orderNowButton}>
-          <Text style={styles.buttonText}>Order Now</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.orderNowButton}
+            onPress={() =>
+              router.push({ pathname: "/purchase", params: clothe })
+            }>
+            <Text style={styles.buttonText}>Order Now</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
