@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "reve-1",
-    "slug": "reve-1",
-    "scheme": "reve-1-scheme",
+    "name": "reve-1.0",
+    "slug": "reve-1.0",
+    "scheme": "reve-1.0-scheme",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -13,13 +13,16 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true
     },
     "android": {
+      // "googleServicesFile": "google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      // "package": "com.reveid.reve",
       "googleServicesFile": "./google-services.json",
       "package": "com.reve.reve"
     },
@@ -44,14 +47,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "c967da56-e434-4dca-918f-0501bfdd96c2"
-      }
     }
   }
 }
