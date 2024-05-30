@@ -10,6 +10,7 @@ const MyFlatList = () => {
   const router = useRouter();
   return (
     <FlatList
+      scrollEnabled={false}
       data={Shirts}
       renderItem={({ item }) => (
         <TouchableOpacity
@@ -18,7 +19,7 @@ const MyFlatList = () => {
           }}
           style={styles.item}
         >
-          <View style={{ width: "100%%", alignItems: "center", borderRadius: 8, borderWidth: 1 }}>
+          <View style={{ width: "100%", alignItems: "center", borderRadius: 8, borderWidth: 1 }}>
             <Image source={{ uri: item.image }} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <View style={styles.priceAndSizeContainer}>
