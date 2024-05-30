@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from "react-native";
-import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
 import HelpCenterAccordion from "@/components/Accordion";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -9,7 +8,7 @@ import { useRouter } from "expo-router";
 export default function HomeScreen() {
   const router = useRouter();
   return (
-    <MenuProvider>
+    <>
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
@@ -64,7 +63,7 @@ export default function HomeScreen() {
           </ScrollView>
         </View>
       </SafeAreaView>
-    </MenuProvider>
+    </>
   );
 }
 

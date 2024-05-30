@@ -8,7 +8,7 @@ export default function Page() {
     <View style={{ width: "100%", flex: 1, alignItems: "center" }}>
       <View style={{ width: "100%" }}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: image }} style={styles.image} />
+          <Image source={image} style={styles.image} />
         </View>
         <Text>{name}</Text>
         <Text>{brand}</Text>
@@ -32,7 +32,9 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    width: "100px",
+    width: "100%",
     backgroundColor: "#333",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

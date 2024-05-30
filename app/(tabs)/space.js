@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image, ScrollView } from "react-native";
-import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
+
 import Header from "../../components/Header";
 import Hero from "@/components/Hero";
 
@@ -8,14 +8,14 @@ const Space = () => {
   const [tab, setTab] = useState("missions");
 
   return (
-    <MenuProvider>
+    <>
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
           <Header title="My Space" />
           <ScrollView>
             <View style={styles.gold}>
-              <Image source={{ uri: "/assets/images/gold.png" }} style={styles.image} />
+              <Image source={{ uri: "@/assets/images/gold.png" }} style={styles.image} />
             </View>
             <View style={styles.tabs}>
               <TouchableOpacity
@@ -47,24 +47,24 @@ const Space = () => {
             <View>
               {tab == "missions" && (
                 <View style={{ height: "60vh" }}>
-                  <Image source={{ uri: "/assets/images/missions.png" }} style={styles.image} />
+                  <Image source={{ uri: "@/assets/images/missions.png" }} style={styles.image} />
                 </View>
               )}
               {tab == "perks" && (
                 <View style={{ height: "60vh" }}>
-                  <Image source={{ uri: "/assets/images/perks.png" }} style={styles.image} />
+                  <Image source={{ uri: "@/assets/images/perks.png" }} style={styles.image} />
                 </View>
               )}
               {tab == "contributions" && (
                 <View style={{ height: "60vh" }}>
-                  <Image source={{ uri: "/assets/images/contributions.png" }} style={styles.image} />
+                  <Image source={{ uri: "@/assets/images/contributions.png" }} style={styles.image} />
                 </View>
               )}
             </View>
           </ScrollView>
         </View>
       </SafeAreaView>
-    </MenuProvider>
+    </>
   );
 };
 
