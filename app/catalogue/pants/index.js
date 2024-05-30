@@ -18,8 +18,8 @@ const MyFlatList = () => {
           }}
           style={styles.item}
         >
-          <View style={{ width: "100vh", alignItems: "center", borderRadius: 8, borderWidth: 1, padding: 8 }}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+          <View style={{ width: "100%", alignItems: "center", borderRadius: 8, borderWidth: 1, padding: 8 }}>
+            <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <View style={styles.priceAndSizeContainer}>
               <Text style={styles.price}>Rp{item.price}</Text>
