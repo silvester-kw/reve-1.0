@@ -1,4 +1,4 @@
-export const Closet = [
+export const ClosetData = [
   {
     id: "1",
     name: "Blue Jeans",
@@ -29,29 +29,29 @@ export const Closet = [
   },
   {
     id: "3",
-    name: "Dummy 3",
+    name: "Dungaree Gather Skirt",
+    price: 15000,
+    size: "XL",
+    image: require("@/assets/images/skirt3/messageImage_1716979530723.jpg"),
     brand: "Brand C",
-    price: 30000,
-    size: "L",
     rentStart: "2 Apr 2024",
     rentEnd: "7 Apr 2024",
     status: "Return Now!",
     category: "shirt",
-    image: require("@/assets/images/shirts/shirt3.png"),
     description:
       "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
   },
   {
     id: "4",
-    name: "Dummy 4",
+    name: "Shirring Skirt",
+    price: 20000,
+    size: "XL",
+    image: require("@/assets/images/skrit1/messageImage_1716979212960.jpg"),
     brand: "Brand C",
-    price: 30000,
-    size: "L",
     rentStart: "2 Apr 2024",
     rentEnd: "7 Apr 2024",
     status: "Return Now!",
     category: "shirt",
-    image: require("@/assets/images/shirts/shirt4.png"),
     description:
       "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
   },

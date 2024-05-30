@@ -38,22 +38,22 @@ export default function HomeScreen() {
                 </TouchableOpacity>
               </View>
               <View style={styles.row2}>
-                <View style={[styles.box3, styles.box]}>
+                <TouchableOpacity onPress={() => router.push("../catalogue/skirts/")} style={[styles.box3, styles.box]}>
                   <Text style={styles.boxText}>Skirts</Text>
                   <Image
                     source={require("@/assets/images/skirts.jpg")} // Use the imported image
                     style={styles.fotobesar}
                     resizeMode="cover"
                   />
-                </View>
-                <View style={[styles.box4, styles.box]}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => router.push("../catalogue/sweaters/")} style={[styles.box4, styles.box]}>
                   <Text style={styles.boxText}>Sweater</Text>
                   <Image
                     source={require("@/assets/images/sweater.jpg")} // Use the imported image
                     style={styles.fotobesar}
                     resizeMode="cover"
                   />
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
             <View>

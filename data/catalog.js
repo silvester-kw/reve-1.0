@@ -4,6 +4,7 @@ export const Pants = [
     name: "Smart Ankle Pants (Cotton)",
     price: 20000,
     size: "XL",
+    image: require("@/assets/images/pants1/messageImage_1716976824930.jpg"),
     description:
       "2-way stretch fabric for a comfortable fit. Smooth cotton twill fabric made from fine-count yarn. Tapered, ankle-length cut with a slim fit. Sleek seam pockets at the sides. Comfortable elastic waistband offers a classic look with a tucked-in top. Suitable for casual or more elegant occasions.",
   },
@@ -12,6 +13,7 @@ export const Pants = [
     name: "Drapey Denim Pleated Pants",
     price: 20000,
     size: "XL",
+    image: require("@/assets/images/pants2/messageImage_1716978172176.jpg"),
     description:
       "Incredibly soft denim made from a lyocell and cotton blend. Stylish pleats at the front. Elastic waist at the back for easy outfit changes. Full-length, wide-leg straight cut. BLUE CYCLE JEANS technology reduces the volume of water* used in the finishing process. Water savings may vary between products.",
   },
@@ -20,6 +22,7 @@ export const Pants = [
     name: "AIRism Cotton Easy Shorts",
     price: 15000,
     size: "XL",
+    image: require("@/assets/images/pants3/messageImage_1716978806979.jpg"),
     description: "Smooth AIRism made with slub yarns for a casual style. Pockets on both sides. Elastic waist for easy outfit changes. Adjustable drawstring waist.",
   },
   {
@@ -27,6 +30,7 @@ export const Pants = [
     name: "Linen Blend Easy Pants",
     price: 20000,
     size: "XL",
+    image: require("@/assets/images/pants4/messageImage_1716979084346.jpg"),
     description:
       "Made with a rayon-linen-cotton blend fabric for a natural slub look. Pre-washed for a casual feel. Elasticized, drawstring waist. Front tucks. Pockets on both sides. Relaxed fit. A casual and comfortable item for relaxing at home or wearing out and about.",
   },
@@ -43,7 +47,7 @@ export const Skirts = [
   },
   {
     id: "2",
-    name: "Linen Blend Belted Flared Skirt",
+    name: "Linen Skirt",
     price: 20000,
     size: "XL",
     image: require("@/assets/images/skirt2/messageImage_1716979380032.jpg"),
@@ -51,7 +55,7 @@ export const Skirts = [
   },
   {
     id: "3",
-    name: "Dungaree Gather Skirt",
+    name: "Dungaree Skirt",
     price: 15000,
     size: "XL",
     image: require("@/assets/images/skirt3/messageImage_1716979530723.jpg"),
@@ -60,7 +64,7 @@ export const Skirts = [
   },
   {
     id: "4",
-    name: "Smart Skort (Check)",
+    name: "Smart Skirt",
     price: 20000,
     size: "L",
     image: require("@/assets/images/skirt4/messageImage_1716979837128.jpg"),
@@ -72,7 +76,7 @@ export const Skirts = [
 export const Shirts = [
   {
     id: "1",
-    name: "The Angels Shirt",
+    name: "The Angels Shirt Premium",
     price: 40000,
     size: "M",
     image: require("@/assets/images/shirt1-TheAngelsShirt/1.png"),
@@ -122,5 +126,44 @@ export const Shirts = [
     image: require("@/assets/images/shirts/shirt4.png"),
     description:
       "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
+  },
+];
+
+export const Sweaters = [
+  {
+    id: "1",
+    name: "Sweat Long Sleeve Shirt",
+    price: 30000,
+    size: "L",
+    image: require("@/assets/images/sweater/messageImage_1716980696228.jpg"),
+    description:
+      "Smooth touch on the inside and out. Special looped lining prevents pilling. Classic V-insert and long ribbing at the neckline. Neck tape helps the collar keep its shape even after repeated washing. Versatile regular silhouette.",
+  },
+  {
+    id: "2",
+    name: "Washable Crew Neck",
+    price: 30000,
+    size: "L",
+    image: require("@/assets/images/sweater2/messageImage_1716981145034.jpg"),
+    description:
+      "Knit with alternating cotton-rayon and polyester threads for a crisp, stretchy fabric that retains its shape. The cut showcases the texture of the fabric. Ribbed hems and cuffs join seamlessly to the body. Ribbed collar seam positioned to minimize skin irritation. Cuff accent stripe placement varies across sizes. Combines the ease of a sweatshirt and the elegance of a knit",
+  },
+  {
+    id: "3",
+    name: "Washable Milano Ribbed Crew Neck",
+    price: 25000,
+    size: "M",
+    image: require("@/assets/images/sweater3/messageImage_1716983535018.jpg"),
+    description:
+      "Knitted with a combination of cotton-rayon blended yarn and polyester yarn for plenty of body and stretch. Retains its shape. The cut showcases The texture of The knitted fabric. Ribbed hems and cuffs join seamlessly to The body. Ribbed Collar seam positioned to minimize skin irritation. As easy to wear as a sweatshirt, this elegant knit sweater is suitable for business or casual wear.",
+  },
+  {
+    id: "4",
+    name: "Studio Ghibli Sweat Long Sleeve Shirt",
+    price: 35000,
+    size: "L",
+    image: require("@/assets/images/sweater4/messageImage_1716983535018.jpg"),
+    description:
+      "The design incorporates a wide variety of art featuring Ghibli's best-known works, as well as the work of Thai artist Kanyada. Through this collection, we hope that the brilliance and energy of Studio Ghibli reaches each and every one of you. Hey, Let’s Go! Body: 100% Cotton/ Rib: 78% Cotton, 22% Polyester. Machine wash cold, Do not Dry Clean, Tumble dry low.",
   },
 ];
