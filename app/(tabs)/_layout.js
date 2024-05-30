@@ -3,14 +3,16 @@ import React from "react";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = "black";
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: colorScheme,
         headerShown: false,
       }}
     >
@@ -19,7 +21,7 @@ export default function TabLayout() {
         options={{
           title: "Home",
           headerTitle: "Home",
-          tabBarIcon: ({ color, focused }) => <TabBarIcon name={focused ? "home" : "home-outline"} color={color} />,
+          tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "home" : "home-outline"} color="black" />,
         }}
       />
       <Tabs.Screen
@@ -27,7 +29,7 @@ export default function TabLayout() {
         options={{
           title: "Bag",
           headerTitle: "My Bag",
-          tabBarIcon: ({ color, focused }) => <TabBarIcon name={focused ? "bag" : "bag-outline"} color={color} />,
+          tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "bag" : "bag-outline"} color="black" />,
         }}
       />
 
@@ -36,7 +38,7 @@ export default function TabLayout() {
         options={{
           title: "Closet",
           headerTitle: "My Closet",
-          tabBarIcon: ({ color, focused }) => <TabBarIcon name={focused ? "star" : "star-outline"} color={color} />,
+          tabBarIcon: ({ focused }) => <MaterialCommunityIcons name={focused ? "wardrobe" : "wardrobe-outline"} size={24} color="black" />,
         }}
       />
 
@@ -45,7 +47,7 @@ export default function TabLayout() {
         options={{
           title: "space",
           headerTitle: "Space",
-          tabBarIcon: ({ color, focused }) => <TabBarIcon name={focused ? "star" : "star-outline"} color={color} />,
+          tabBarIcon: ({ focused }) => <AntDesign name={focused ? "star" : "staro"} size={24} color="black" />,
         }}
       />
     </Tabs>

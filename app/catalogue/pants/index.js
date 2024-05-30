@@ -5,6 +5,11 @@ import Hero from "@/components/Hero";
 import { useRouter } from "expo-router";
 import { Pants } from "../../../data/catalog";
 
+const currencyFormatter = new Intl.NumberFormat("id-ID", {
+  style: "currency",
+  currency: "IDR",
+});
+
 const MyFlatList = () => {
   const router = useRouter();
   return (
@@ -22,7 +27,7 @@ const MyFlatList = () => {
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <View style={styles.priceAndSizeContainer}>
-              <Text style={styles.price}>Rp{item.price}</Text>
+              <Text style={styles.price}>{currencyFormatter.format(item.price)}</Text>
             </View>
             <Text style={styles.size}>Size: {item.size}</Text>
           </View>

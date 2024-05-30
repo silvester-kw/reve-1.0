@@ -48,7 +48,7 @@ export default function Closet() {
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
-          <Header title="Closet" />
+          <Header title="My Closet" />
 
           <FlatList data={items} keyExtractor={(item) => item.id} renderItem={renderItem} />
         </View>
