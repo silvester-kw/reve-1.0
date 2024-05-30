@@ -3,14 +3,14 @@ import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleS
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import { useRouter } from "expo-router";
-import { Shirts } from "../../../data/shirts";
+import { Pants } from "../../../data/catalog";
 
 const MyFlatList = () => {
   const router = useRouter();
   return (
     <FlatList
       scrollEnabled={false}
-      data={Shirts}
+      data={Pants}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => {
@@ -44,7 +44,7 @@ const ShirtCatalogue = () => {
           <ScrollView>
             <Hero />
             <View>
-            <Text style={{ color: "#000", fontSize: 16, fontWeight: "bold", marginTop: 20, marginLeft: 20 }}>Shirt</Text>
+              <Text style={{ color: "#000", fontSize: 16, fontWeight: "bold", marginTop: 20, marginLeft: 20 }}>Pants</Text>
             </View>
             <View style={{ marginHorizontal: 16 }}>
               <MyFlatList />
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   image: {
     width: 100,
