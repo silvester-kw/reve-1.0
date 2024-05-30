@@ -10,56 +10,20 @@ export default function Bag() {
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
-        <StatusBar barStyle="light-content" backgroundColor="#000" />
+        {/* <StatusBar barStyle="light-content" backgroundColor="#000" /> */}
         <View style={styles.container}>
           <Header title="Your Bag" />
           <ScrollView>
-            <Hero />
-            <View>
-              <Text style={{ color: "#000", fontSize: 16, fontWeight: "bold", marginTop: 20, marginLeft: 20 }}>Catalogue</Text>
+            <View style={styles.row1}>
+            <TouchableOpacity
+              >
+                <Text style={styles.tabText}>Contributions</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+              >
+                <Text style={styles.tabText}>Contributions</Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.columnCatalogue}>
-              <View style={styles.row1}>
-                <TouchableOpacity onPress={() => router.push("../catalogue/pants/")} style={[styles.box1, styles.box]}>
-                  <Text style={styles.boxText}>Pants</Text>
-                  <Image
-                    source={require("@/assets/images/pants.jpg")} // Use the imported image
-                    style={styles.fotobesar}
-                    resizeMode="cover"
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => router.push("../catalogue/shirts/")} style={[styles.box2, styles.box]}>
-                  <Text style={styles.boxText}>Shirts</Text>
-                  <Image
-                    source={require("@/assets/images/shirts.jpg")} // Use the imported image
-                    style={styles.fotobesar}
-                    resizeMode="cover"
-                  />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.row2}>
-                <View style={[styles.box3, styles.box]}>
-                  <Text style={styles.boxText}>Skirts</Text>
-                  <Image
-                    source={require("@/assets/images/skirts.jpg")} // Use the imported image
-                    style={styles.fotobesar}
-                    resizeMode="cover"
-                  />
-                </View>
-                <View style={[styles.box4, styles.box]}>
-                  <Text style={styles.boxText}>Sweater</Text>
-                  <Image
-                    source={require("@/assets/images/sweater.jpg")} // Use the imported image
-                    style={styles.fotobesar}
-                    resizeMode="cover"
-                  />
-                </View>
-              </View>
-            </View>
-            <View>
-              <Text style={{ color: "#000", fontSize: 16, fontWeight: "bold", marginTop: 20, marginLeft: 20, marginBottom: 10 }}>Help Center</Text>
-            </View>
-            <HelpCenterAccordion />
           </ScrollView>
         </View>
       </SafeAreaView>

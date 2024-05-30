@@ -162,7 +162,7 @@ export const Sweaters = [
     name: "Studio Ghibli Sweat Long Sleeve Shirt",
     price: 35000,
     size: "L",
-    image: require("@/assets/images/sweater4/messageImage_1716983535018.jpg"),
+    image: require("@/assets/images/sweater4/messageImage_1716983595824.jpg"),
     description:
       "The design incorporates a wide variety of art featuring Ghibli's best-known works, as well as the work of Thai artist Kanyada. Through this collection, we hope that the brilliance and energy of Studio Ghibli reaches each and every one of you. Hey, Let’s Go! Body: 100% Cotton/ Rib: 78% Cotton, 22% Polyester. Machine wash cold, Do not Dry Clean, Tumble dry low.",
   },
