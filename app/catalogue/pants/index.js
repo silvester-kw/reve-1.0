@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image, ScrollView } from "react-native";
-import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import { useRouter } from "expo-router";
@@ -19,7 +18,7 @@ const MyFlatList = () => {
           }}
           style={styles.item}
         >
-          <View style={{ width: "100%", alignItems: "center", borderRadius: 8, borderWidth: 1 }}>
+          <View style={{ width: "100%", alignItems: "center", borderRadius: 8, borderWidth: 1, padding: 8 }}>
             <Image source={{ uri: item.image }} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <View style={styles.priceAndSizeContainer}>
@@ -37,7 +36,7 @@ const MyFlatList = () => {
 
 const ShirtCatalogue = () => {
   return (
-    <MenuProvider>
+    <>
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
@@ -45,7 +44,7 @@ const ShirtCatalogue = () => {
           <ScrollView>
             <Hero />
             <View>
-              <Text className="font-bold text-xl">Shirts</Text>
+              <Text style={{ fontSize: 16, marginLeft: 16, fontWeight: "500", marginBottom: 16, marginTop: 8 }}>Shirts</Text>
             </View>
             <View style={{ marginHorizontal: 16 }}>
               <MyFlatList />
@@ -53,7 +52,7 @@ const ShirtCatalogue = () => {
           </ScrollView>
         </View>
       </SafeAreaView>
-    </MenuProvider>
+    </>
   );
 };
 
@@ -137,8 +136,8 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: "column",
     flexWrap: "wrap",
-    padding: 12,
-    backgroundColor: "#999",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 12,
