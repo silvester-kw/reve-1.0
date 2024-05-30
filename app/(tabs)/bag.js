@@ -1,150 +1,126 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
-import Header from "../../components/Header";
-
-const initialItems = [
-  {
-    id: "1",
-    name: "Product 1",
-    price: 29.99,
-    quantity: 1,
-    image: "https://via.placeholder.com/100",
-  },
-  {
-    id: "2",
-    name: "Product 2",
-    price: 49.99,
-    quantity: 2,
-    image: "https://via.placeholder.com/100",
-  },
-  // Add more items as needed
-];
+import React from "react";
+import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from "react-native";
+import HelpCenterAccordion from "@/components/Accordion";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import { useRouter } from "expo-router";
 
 export default function Bag() {
-  const [items, setItems] = useState(initialItems);
-
-  const increaseQuantity = (id) => {
-    setItems((prevItems) => prevItems.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item)));
-  };
-
-  const decreaseQuantity = (id) => {
-    setItems((prevItems) => prevItems.map((item) => (item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item)));
-  };
-
-  const calculateTotal = () => {
-    return items.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
-  };
-
-  const renderItem = ({ item }) => (
-    <View style={styles.item}>
-      <Image source={{ uri: item.image }} style={styles.image} />
-      <View style={styles.details}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.price}>${item.price.toFixed(2)}</Text>
-        <View style={styles.quantityContainer}>
-          <TouchableOpacity onPress={() => decreaseQuantity(item.id)} style={styles.button}>
-            <Text style={styles.buttonText}>-</Text>
-          </TouchableOpacity>
-          <Text style={styles.quantity}>{item.quantity}</Text>
-          <TouchableOpacity onPress={() => increaseQuantity(item.id)} style={styles.button}>
-            <Text style={styles.buttonText}>+</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  );
-
-  const listBottomComponent = () => (
-    <View style={styles.totalContainer}>
-      <Text style={styles.totalText}>Total: ${calculateTotal()}</Text>
-      <TouchableOpacity style={styles.checkoutButton}>
-        <Text style={styles.checkoutButtonText}>Checkout</Text>
-      </TouchableOpacity>
-    </View>
-  );
-
+  const router = useRouter();
   return (
-    <View style={styles.container}>
-             {/* <Header title="Home" /> */}
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        ListFooterComponent={listBottomComponent}
-      />
-    </View>
+    <>
+      <SafeAreaView style={styles.safeArea}>
+        {/* <StatusBar barStyle="light-content" backgroundColor="#000" /> */}
+        <View style={styles.container}>
+          <Header title="Your Bag" />
+          <ScrollView>
+            <View style={styles.row1}>
+            <TouchableOpacity
+              >
+                <Text style={styles.tabText}>Contributions</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+              >
+                <Text style={styles.tabText}>Contributions</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </View>
+      </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#000", // Match the background color of the header
+  },
   container: {
     flex: 1,
-    padding: 16,
-  },
-  item: {
-    flexDirection: "row",
-    padding: 16,
-    marginBottom: 16,
     backgroundColor: "#fff",
-    borderRadius: 8,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 5,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    position: "relative",
   },
-  image: {
-    width: 100,
-    height: 100,
-    marginRight: 16,
-  },
-  details: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  price: {
-    fontSize: 16,
-    color: "#888",
-    marginVertical: 8,
-  },
-  quantityContainer: {
+  header: {
+    width: "100%",
+    height: 60,
+    backgroundColor: "#000",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between", // Ensures space between the items
+    paddingHorizontal: 10,
   },
-  button: {
-    padding: 8,
-    backgroundColor: "#ddd",
-    borderRadius: 4,
-  },
-  buttonText: {
-    fontSize: 18,
-  },
-  quantity: {
-    marginHorizontal: 16,
-    fontSize: 18,
-  },
-  totalContainer: {
-    padding: 16,
-    borderTopWidth: 1,
-    borderTopColor: "#ddd",
-    alignItems: "center",
-  },
-  totalText: {
+  test: {
     fontSize: 24,
-    fontWeight: "bold",
   },
-  checkoutButton: {
-    marginTop: 16,
-    backgroundColor: "#28a745",
-    padding: 16,
-    borderRadius: 8,
+  columnCatalogue: {
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 5,
+    backgroundColor: "#fff",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
   },
-  checkoutButtonText: {
+  row1: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  row2: {
+    marginTop: 30,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  box: {
+    height: 120,
+    width: 163,
+    alignItems: "center", //kanan kiri
+    justifyContent: "center", //atas bawah
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  box1: {
+    backgroundColor: "red",
+  },
+  box2: {
+    backgroundColor: "cyan",
+  },
+  box3: {
+    backgroundColor: "green",
+  },
+  box4: {
+    backgroundColor: "yellow",
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    resizeMode: "contain",
+  },
+  titleContainer: {
+    flex: 1,
+    alignItems: "center", // Centers the title horizontally within this container
+  },
+  title: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
+  },
+  profileLogo: {
+    width: 40,
+    height: 40,
+    resizeMode: "contain",
+  },
+  menuText: {
+    padding: 10,
+    fontSize: 16,
+  },
+  boxText: {
+    fontSize: 25,
+    color: "white", // Adjust text color as needed
+    fontWeight: "bold",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5,
+    zIndex: 1,
+    position: "absolute",
   },
 });

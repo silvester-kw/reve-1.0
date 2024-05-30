@@ -3,14 +3,14 @@ import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleS
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import { useRouter } from "expo-router";
-import { Pants } from "../../../data/catalog";
+import { Sweaters } from "../../../data/catalog";
 
 const MyFlatList = () => {
   const router = useRouter();
   return (
     <FlatList
       scrollEnabled={false}
-      data={Pants}
+      data={Sweaters}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => {
@@ -34,7 +34,7 @@ const MyFlatList = () => {
   );
 };
 
-const ShirtCatalogue = () => {
+const SweaterCatalogue = () => {
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
@@ -44,7 +44,7 @@ const ShirtCatalogue = () => {
           <ScrollView>
             <Hero />
             <View>
-              <Text style={{ color: "#000", fontSize: 16, fontWeight: "bold", marginTop: 20, marginLeft: 20 }}>Pants</Text>
+              <Text style={{ color: "#000", fontSize: 16, fontWeight: "bold", marginTop: 20, marginLeft: 20 }}>Sweaters</Text>
             </View>
             <View style={{ marginHorizontal: 16 }}>
               <MyFlatList />
@@ -168,4 +168,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShirtCatalogue;
+export default SweaterCatalogue;

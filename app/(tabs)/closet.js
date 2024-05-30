@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
 
 import Header from "../../components/Header";
-import { Shirts } from "../../data/shirts";
+import { ClosetData } from "../../data/closet";
 const initialItems = [
   {
     id: "1",
@@ -25,10 +25,10 @@ const initialItems = [
 ];
 
 export default function Closet() {
-  const [items, setItems] = useState(Shirts);
+  const [items, setItems] = useState(ClosetData);
   const renderItem = ({ item }) => (
     <View style={styles.item}>
-      <Image source={{ uri: item.image }} style={styles.image} />
+      <Image source={item.image} style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.brand}>{item.brand}</Text>
