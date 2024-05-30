@@ -55,4 +55,32 @@ export const ClosetData = [
     description:
       "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
   },
+  {
+    id: "5",
+    name: "Washable Milano",
+    price: 20000,
+    size: "XL",
+    image: require("@/assets/images/sweater3/messageImage_1716983535018.jpg"),
+    brand: "Zara",
+    rentStart: "2 Apr 2024",
+    rentEnd: "7 Apr 2024",
+    status: "Finished",
+    category: "shirt",
+    description:
+      "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
+  },
+  {
+    id: "6",
+    name: "Studio Ghibli Long Sleeve",
+    price: 20000,
+    size: "XL",
+    image: require("@/assets/images/sweater4/messageImage_1716983595824.jpg"),
+    brand: "Zara",
+    rentStart: "2 Apr 2024",
+    rentEnd: "7 Apr 2024",
+    status: "Finished",
+    category: "shirt",
+    description:
+      "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
+  },
 ];

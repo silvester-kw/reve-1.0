@@ -4,11 +4,24 @@ import { Button, Checkbox } from "react-native-paper";
 import Header from "@/components/Header";
 import { useRouter } from "expo-router";
 import { BagData } from "@/data/bag";
+import { Skirts } from "@/data/catalog";
 
 const currencyFormatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
   currency: "IDR",
 });
+
+const ShirtRecommendations = () => {
+  const renderSkirts = ({ item }) => (
+    <View style={styles.shirtItem}>
+      <Image source={item.image} style={styles.shirtImage} />
+      <Text style={styles.shirtName}>{item.name}</Text>
+      <Text style={styles.shirtPrice}>{currencyFormatter.format(item.price)}</Text>
+    </View>
+  );
+
+  return <FlatList data={Skirts} renderItem={renderSkirts} keyExtractor={(item) => item.id} horizontal showsHorizontalScrollIndicator={false} style={styles.shirtList} />;
+};
 
 export default function Bag() {
   const router = useRouter();
@@ -23,7 +36,7 @@ export default function Bag() {
 
   const renderClothes = ({ item }) => {
     return (
-      <View className="flex flex-row pt-1 pb-2 border-[1.5px] rounded-m justify-start items-center gap-2 m-0 shadow-sm shadow-black my-1">
+      <View className="flex flex-row pt-1 pb-2 border-[1px] rounded-lg justify-start items-center gap-2 m-0  my-1">
         <Checkbox status="checked" color="#404040" />
         <View className="flex flex-row border-2 rounded-md border-gray-400 w-12 h-16">
           <Image source={item.image} className="max-h-full max-w-full" />
@@ -62,6 +75,7 @@ export default function Bag() {
             <View>
               <Text className="font-bold text-lg mt-6">Recommendations</Text>
             </View>
+            <ShirtRecommendations />
             <View className="flex flex-row justify-between">
               <Text className="font-bold text-lg mt-6">Subtotal</Text>
               <Text className="font-bold text-lg mt-6">Rp 40.000,00</Text>
@@ -170,5 +184,29 @@ const styles = StyleSheet.create({
     textShadowRadius: 5,
     zIndex: 1,
     position: "absolute",
+  },
+  shirtList: {
+    marginVertical: 10,
+  },
+  shirtItem: {
+    marginRight: 10,
+    alignItems: "center",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 4,
+  },
+  shirtImage: {
+    width: 100,
+    height: 100,
+  },
+  shirtName: {
+    marginTop: 5,
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  shirtPrice: {
+    marginTop: 2,
+    fontSize: 12,
+    color: "#666",
   },
 });
