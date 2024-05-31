@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "reve-1",
-    "slug": "reve-1",
-    "scheme": "reve-1-scheme",
+    "name": "reveindonesia",
+    "slug": "reveindonesia",
+    "scheme": "reveindonesia",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -50,7 +50,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "dc47570a-9246-437f-a758-b82bc2433c3a"
+        "projectId": "faf470d7-a136-42c5-9f09-57e1eed3c45f"
       }
     }
   }

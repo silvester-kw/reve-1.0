@@ -1,34 +1,22 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  Platform,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-  MenuProvider,
-} from "react-native-popup-menu";
+import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from "react-native";
+import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
 
-import { Link } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 
 import { Avatar } from "react-native-paper";
 
 import { useUser } from "@/hooks/useUser";
 
+import { StackActions } from "@react-navigation/native";
+
 export default function Header({ title }) {
+  const navigation = useNavigation();
   const { user, logout } = useUser();
 
   const onLogout = () => {
     logout();
+    navigation.dispatch(StackActions.popToTop());
   };
 
   return (
