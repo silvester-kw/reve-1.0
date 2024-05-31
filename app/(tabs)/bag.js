@@ -6,6 +6,8 @@ import { useRouter } from "expo-router";
 import { BagData } from "@/data/bag";
 import { Skirts } from "@/data/catalog";
 
+import { useUser } from "@/hooks/useUser";
+
 const currencyFormatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
   currency: "IDR",
@@ -25,6 +27,13 @@ const ShirtRecommendations = () => {
 
 export default function Bag() {
   const router = useRouter();
+  const { user } = useUser();
+
+  if (!user) {
+    router.push("/login");
+    return null;
+  }
+
   const id = "1";
   const name = BagData[0].name;
   const brand = BagData[0].brand;

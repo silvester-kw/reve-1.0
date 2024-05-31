@@ -19,14 +19,15 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
+
 const firebaseConfig = {
-  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyCIZOl-CGZPcpJ2lR8cvOT3Onf0aroE5GI",
+  authDomain: "reve-aae4c.firebaseapp.com",
+  projectId: "reve-aae4c",
+  storageBucket: "reve-aae4c.appspot.com",
+  messagingSenderId: "119215328872",
+  appId: "1:119215328872:web:b4804d6f287d8dd8ab35dd",
+  measurementId: "G-19R3KRR300",
 };
 
 console.log("TEST", firebaseConfig);

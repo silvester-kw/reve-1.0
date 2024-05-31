@@ -4,9 +4,17 @@ import { View, Text, Image } from "react-native";
 import { Button } from "react-native-paper";
 
 import { StackActions } from "@react-navigation/native";
+import { useUser } from "@/hooks/useUser";
 
 export default function PurchaseConfirmed() {
+  const { user } = useUser();
+
   const navigation = useNavigation();
+
+  if (!user) {
+    router.push("/login");
+    return null;
+  }
 
   return (
     <View className="bg-gray-100 h-full w-full flex flex-col my-auto items-center p-8 gap-y-4 justify-center">
