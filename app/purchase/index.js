@@ -3,6 +3,7 @@ import { ScrollView, Text, View, Image } from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 import { FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useUser } from "@/hooks/useUser";
 
 const currencyFormatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
@@ -10,11 +11,17 @@ const currencyFormatter = new Intl.NumberFormat("id-ID", {
 });
 
 export default function Purchase() {
+  const { user } = useUser();
   const router = useRouter();
 
   const clothes = [useLocalSearchParams("clothes")];
 
   console.log(clothes);
+
+  if (!user) {
+    router.push("/login");
+    return null;
+  }
 
   if (!clothes) {
     router.push("/not-found");

@@ -4,10 +4,12 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useUser } from "@/hooks/useUser";
 import { Button, TextInput } from "react-native-paper";
 
-import { useRouter } from "expo-router";
+import { useRouter, useNavigation } from "expo-router";
+import { StackActions } from "@react-navigation/native";
 
 export default function Login() {
   const router = useRouter();
+  const navigation = useNavigation();
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,12 +20,16 @@ export default function Login() {
   const { user, login, register } = useUser();
 
   const handleSubmit = () => {
+    setIsLoading(true);
+
     if (isLogin) {
       login(email, password)
         .then(() => {
           if (user) {
-            console.log("Logged in");
-            router.push("/");
+            alert("Logged in");
+            navigation.dispatch(StackActions.popToTop());
+          } else {
+            alert("Not logged in");
           }
         })
         .catch((error) => {
@@ -35,10 +41,8 @@ export default function Login() {
     } else {
       register(email, password)
         .then(() => {
-          if (user) {
-            console.log("Registered");
-            router.push("/");
-          }
+          alert("Registered");
+          navigation.dispatch(StackActions.popToTop());
         })
         .catch((error) => {
           alert(error);

@@ -3,6 +3,8 @@ import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleS
 
 import Header from "../../components/Header";
 import { ClosetData } from "../../data/closet";
+import { useRouter } from "expo-router";
+import { useUser } from "@/hooks/useUser";
 const initialItems = [
   {
     id: "1",
@@ -25,6 +27,15 @@ const initialItems = [
 ];
 
 export default function Closet() {
+  const router = useRouter();
+
+  const { user } = useUser();
+
+  if (!user) {
+    router.push("/login");
+    return null;
+  }
+
   const [items, setItems] = useState(ClosetData);
   const renderItem = ({ item }) => (
     <View style={styles.item}>
