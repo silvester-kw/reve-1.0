@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList, View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 import Header from "@/components/Header";
-import { useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { BagData } from "@/data/bag";
 import { Skirts } from "@/data/catalog";
 
@@ -29,10 +29,11 @@ export default function Bag() {
   const router = useRouter();
   const { user } = useUser();
 
-  if (!user) {
-    router.push("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
 
   const id = "1";
   const name = BagData[0].name;

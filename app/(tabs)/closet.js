@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
 
 import Header from "../../components/Header";
@@ -31,10 +31,11 @@ export default function Closet() {
 
   const { user } = useUser();
 
-  if (!user) {
-    router.push("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
 
   const [items, setItems] = useState(ClosetData);
   const renderItem = ({ item }) => (

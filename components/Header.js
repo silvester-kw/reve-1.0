@@ -1,34 +1,29 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  Platform,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-  MenuProvider,
-} from "react-native-popup-menu";
+import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from "react-native";
+import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
 
-import { Link } from "expo-router";
+import { Link, useNavigation, useRouter } from "expo-router";
 
 import { Avatar } from "react-native-paper";
 
 import { useUser } from "@/hooks/useUser";
 
+import { StackActions } from "@react-navigation/native";
+
 export default function Header({ title }) {
+  const navigation = useNavigation();
   const { user, logout } = useUser();
+  const router = useRouter();
 
   const onLogout = () => {
-    logout();
+    if (navigation.canGoBack()) {
+      router.replace("/");
+    }
+    let timer;
+    timer = setTimeout(() => {
+      logout();
+      clearTimeout(timer);
+    }, 300);
   };
 
   return (
