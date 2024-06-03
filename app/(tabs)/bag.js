@@ -43,6 +43,7 @@ export default function Bag() {
   const description = BagData[0].description;
   const price = BagData[0].price;
   const clothe = { id, name, brand, image, size, description, price };
+  const test = true; //ganti dengan data jumlah pembelian / bag
 
   const renderClothes = ({ item }) => {
     return (
@@ -55,7 +56,7 @@ export default function Bag() {
           <Text className="text-lg font-bold">{item.name}</Text>
           <View className="flex flex-row justify-between">
             <Text className="text-sm">{item.brand}</Text>
-            <Text className="text-sm font-bold">{item.size}</Text>
+            <Text className="text-sm font-bold just">{item.size}</Text>
           </View>
           <Text className="text-sm mr-2">{currencyFormatter.format(item.price)} / Week</Text>
         </View>
@@ -66,7 +67,6 @@ export default function Bag() {
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
-        {/* <StatusBar barStyle="light-content" backgroundColor="#000" /> */}
         <View style={styles.container}>
           <Header title="Your Bag" />
           <ScrollView className="px-8">
@@ -79,8 +79,41 @@ export default function Bag() {
               </TouchableOpacity>
             </View>
             <FlatList data={BagData} renderItem={renderClothes} keyExtractor={(item) => item.id} scrollEnabled={false} className="w-full overflow-visible mb-8" />
-            <View className="flex flex-row justify-center">
-              <Image source={require("@assets/images/positive-savings.png")} />
+            <View className="flex justify-center border-2 rounded-lg">
+              <Text className="font-bold text-lg text-center">Positive Savings</Text>
+              {!test &&(
+              <Text className="text-center">No contribution yet. Let's rent more!</Text>
+              )}
+              {test &&(
+                <View>
+                  <Text className="text-center">Yay! Look how much you have impact the world!</Text>
+                  <View className="flex flex-row px-4 pt-2 justify-center">
+                    <View className="flex">
+                      <View className="flex flex-row align-item justify-center">
+                        <Image source={require("@assets/images/Positive-Savings/Vector.png")} />
+                      </View>
+                      <Text className="text-center font-bold mt-1">1.5 M</Text>
+                      <Text className="text-center font-bold">Textile Waste</Text>
+                    </View>
+                    <View className="flex  absolute pt-2">
+                      <View className="flex  flex-row align-item justify-center">
+                        <Image source={require("@assets/images/Positive-Savings/Vector(1).png")} />
+                      </View>
+                      <Text className="text-center font-bold mt-1">2 L</Text>
+                      <Text className="text-center font-bold">Water</Text>
+                    </View>
+                    <View className="flex ml-28">
+                      <View className="flex flex-row  mt-1 align-item justify-center">
+                        <Image source={require("@assets/images/Positive-Savings/Vector(2).png")} />
+                      </View>
+                      <Text className="text-center font-bold mt-2">1 KG</Text>
+                      <Text className="text-center font-bold">Carbon Dioxide</Text>
+                    </View>
+                  </View>
+                </View>
+              )}
+
+
             </View>
             <View>
               <Text className="font-bold text-lg mt-6">Recommendations</Text>
