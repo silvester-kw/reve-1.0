@@ -1,15 +1,5 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Platform,
-  StatusBar,
-  SafeAreaView,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-  ScrollView,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
 
 import Header from "../../components/Header";
 import Hero from "@/components/Hero";
@@ -21,10 +11,11 @@ const Space = () => {
 
   const { user } = useUser();
 
-  if (!user) {
-    router.push("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
 
   const [tab, setTab] = useState("missions");
 
@@ -36,54 +27,33 @@ const Space = () => {
           <Header title="My Space" />
           <ScrollView>
             <View style={styles.gold}>
-              <Image
-                source={require("@/assets/images/gold.png")}
-                style={styles.image}
-              />
+              <Image source={require("@/assets/images/gold.png")} style={styles.image} />
             </View>
             <View style={styles.tabs}>
-              <TouchableOpacity
-                style={[styles.tab, tab === "missions" && styles.activeTab]}
-                onPress={() => setTab("missions")}>
+              <TouchableOpacity style={[styles.tab, tab === "missions" && styles.activeTab]} onPress={() => setTab("missions")}>
                 <Text style={styles.tabText}>Missions</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.tab, tab === "perks" && styles.activeTab]}
-                onPress={() => setTab("perks")}>
+              <TouchableOpacity style={[styles.tab, tab === "perks" && styles.activeTab]} onPress={() => setTab("perks")}>
                 <Text style={styles.tabText}>Perks</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  styles.tab,
-                  tab === "contributions" && styles.activeTab,
-                ]}
-                onPress={() => setTab("contributions")}>
+              <TouchableOpacity style={[styles.tab, tab === "contributions" && styles.activeTab]} onPress={() => setTab("contributions")}>
                 <Text style={styles.tabText}>Contributions</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.tabContent}>
               {tab === "missions" && (
                 <View style={styles.imageContainer}>
-                  <Image
-                    source={require("@/assets/images/missions.png")}
-                    style={styles.imageMissions}
-                  />
+                  <Image source={require("@/assets/images/missions.png")} style={styles.imageMissions} />
                 </View>
               )}
               {tab === "perks" && (
                 <View style={styles.imageContainer}>
-                  <Image
-                    source={require("@/assets/images/perks.png")}
-                    style={styles.imagePerks}
-                  />
+                  <Image source={require("@/assets/images/perks.png")} style={styles.imagePerks} />
                 </View>
               )}
               {tab === "contributions" && (
                 <View style={styles.imageContainer}>
-                  <Image
-                    source={require("@/assets/images/contributions.png")}
-                    style={styles.imageContributions}
-                  />
+                  <Image source={require("@/assets/images/contributions.png")} style={styles.imageContributions} />
                 </View>
               )}
             </View>

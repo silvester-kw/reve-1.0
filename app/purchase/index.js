@@ -4,6 +4,7 @@ import { Button, Checkbox } from "react-native-paper";
 import { FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useUser } from "@/hooks/useUser";
+import { useEffect } from "react";
 
 const currencyFormatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
@@ -18,10 +19,11 @@ export default function Purchase() {
 
   console.log(clothes);
 
-  if (!user) {
-    router.push("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
 
   if (!clothes) {
     router.push("/not-found");
