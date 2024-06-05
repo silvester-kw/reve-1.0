@@ -61,4 +61,20 @@ const getClosetItem = async (id) => {
   }
 };
 
-export { createClosetItem, getClosetItem };
+const getClosetItemsByUserId = async (userId) => {
+  if (!userId) {
+    return null;
+  }
+
+  try {
+    const closetItemsRef = collection(db, "closetItems");
+    const q = query(closetItemsRef, where("userId", "==", userId));
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs.map((doc) => doc.data());
+  } catch (e) {
+    console.error("Error getting documents: ", e);
+  }
+};
+
+export { createClosetItem, getClosetItem, getClosetItemsByUserId };
