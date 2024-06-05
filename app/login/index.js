@@ -16,6 +16,7 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   const { user, login, register } = useUser();
 
@@ -35,7 +36,7 @@ export default function Login() {
           setIsLoading(false);
         });
     } else {
-      register(email, password)
+      register(email, password, { name })
         .then(() => {
           alert("Registered");
           navigation.dispatch(StackActions.popToTop());
@@ -81,6 +82,22 @@ export default function Login() {
           activeOutlineColor="#696969"
           onChangeText={setPassword}
         />
+        {!isLogin && (
+          <>
+            <Text className="text-xl mt-8 self-start">Name</Text>
+            <TextInput
+              label="Name"
+              mode="outlined"
+              className="w-full bg-gray-100 text-black"
+              underlineColor="transparent"
+              placeholder="Name"
+              textColor="#212121"
+              placeholderTextColor="#858585"
+              activeOutlineColor="#696969"
+              onChangeText={setName}
+            />
+          </>
+        )}
       </View>
       <View className="w-full flex flex-col items-center gap-y-4">
         <Button mode="contained" className="w-full rounded-lg h-12 items-center justify-center" onPress={handleSubmit} buttonColor="#212121" textColor="white" labelStyle={{ width: "100%" }} loading={isLoading}>
