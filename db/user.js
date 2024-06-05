@@ -6,8 +6,19 @@ import { db } from "@/firebase/db";
 export const blankUser = {
   id: "",
   name: "",
+  bag: [],
+  closet: [],
 };
 
+export const fieldType = {
+  name: "string",
+  bag: [
+    {
+      itemId: "string",
+      batch: "number",
+    },
+  ],
+};
 export const requiredFields = ["id", "name"];
 
 const createUser = async (user = blankUser) => {
