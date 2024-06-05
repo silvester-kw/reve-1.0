@@ -39,7 +39,7 @@ export default function Header({ title }) {
         <Menu>
           <MenuTrigger>
             <Image
-              source={require("@/assets/images/pp-icon.png")} // Replace with your profile icon path
+              source={{ uri:"https://i.pravatar.cc/64" }} // Replace with your profile icon path
               style={styles.profileLogo}
             />
           </MenuTrigger>
@@ -142,6 +142,9 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     resizeMode: "contain",
+    borderWidth: 2,
+    borderColor: "purple",
+    borderRadius: 20,
   },
   menuText: {
     padding: 10,
