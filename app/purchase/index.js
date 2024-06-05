@@ -45,8 +45,7 @@ export default function Purchase() {
 
   const renderClothe = ({ item }) => {
     return (
-      <View className="flex flex-row pt-1 pb-2 border-[1.5px] rounded-md border-gray-400 justify-start items-center gap-2 m-0 shadow-sm shadow-black">
-        <Checkbox status="checked" color="#404040" />
+      <View className="flex flex-row pt-1 pb-2 border-[1.5px] rounded-md border-gray-400 justify-start items-center gap-2 m-0 pl-3 shadow-sm shadow-black">
         <View className="flex flex-row border-2 rounded-md border-gray-400 w-12 h-16">
           <Image source={item.image} className="max-h-full max-w-full" />
         </View>
@@ -79,9 +78,10 @@ export default function Purchase() {
                 isModalVisible={isModalVisible}
                 animationType="slide" // aa
                 transparent={true}
-                className="h-full justify-end"
+                className="h-full justify-end animate-slideInUp animate-slideOutDown"
               >
-                <View className="w-full h-full justify-end">
+                <View className="w-full h-full justify-end animate-slideInUp animate-slideOutDown">
+                  <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)} className="h-full"></TouchableOpacity>
                   <View className="w-full bg-slate-200 rounded-t-3xl pt-10 border-2 border-gray-300 space-y-3">
                     <View className="flex flex-row justify-center items-center">
                       <Text className="text-xl font-bold">Payment Method</Text>
@@ -98,11 +98,11 @@ export default function Purchase() {
                       </View>
                       <Text>BCA Virtual Account</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => (setPaymentMethod("Bri Virtual Account"), setIsModalVisible(!isModalVisible))} className="flex flex-row mx-8 border rounded-xl border-gray-400 px-2 py-4">
+                    <TouchableOpacity onPress={() => (setPaymentMethod("BRI Virtual Account"), setIsModalVisible(!isModalVisible))} className="flex flex-row mx-8 border rounded-xl border-gray-400 px-2 py-4">
                       <View className="w-[30%] justify-center items-center">
                         <Image source={require("@/assets/images/bank/bri-logo.png")} />
                       </View>
-                      <Text>Bri Virtual Account</Text>
+                      <Text>BRI Virtual Account</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => (setPaymentMethod("Mandiri Virtual Account"), setIsModalVisible(!isModalVisible))} className="flex flex-row mx-8 border rounded-xl border-gray-400 px-2 py-4">
                       <View className="w-[30%] justify-center items-center">
