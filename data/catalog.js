@@ -1,3 +1,6 @@
+import { createProduct } from "@/db/product";
+import { Image } from "react-native";
+
 export const Pants = [
   {
     id: "1",
@@ -23,7 +26,8 @@ export const Pants = [
     price: 15000,
     size: "XL",
     image: require("@/assets/images/pants3/messageImage_1716978806979.jpg"),
-    description: "Smooth AIRism made with slub yarns for a casual style. Pockets on both sides. Elastic waist for easy outfit changes. Adjustable drawstring waist.",
+    description:
+      "Smooth AIRism made with slub yarns for a casual style. Pockets on both sides. Elastic waist for easy outfit changes. Adjustable drawstring waist.",
   },
   {
     id: "4",
@@ -43,7 +47,8 @@ export const Skirts = [
     price: 20000,
     size: "XL",
     image: require("@/assets/images/skrit1/messageImage_1716979212960.jpg"),
-    description: "Wrinkle-resistant cotton-nylon blend. Lined sheer skirt. Comfortable elastic waist. Shirring creates a sleek look around the midsection. Shell: 100% Cotton/ Lining: 100% Polyester.",
+    description:
+      "Wrinkle-resistant cotton-nylon blend. Lined sheer skirt. Comfortable elastic waist. Shirring creates a sleek look around the midsection. Shell: 100% Cotton/ Lining: 100% Polyester.",
   },
   {
     id: "2",
@@ -51,7 +56,8 @@ export const Skirts = [
     price: 20000,
     size: "XL",
     image: require("@/assets/images/skirt2/messageImage_1716979380032.jpg"),
-    description: "New LifeWear that combines UNIQLOs focus on design, fit, fabric, and functionality with JW ANDERSONs focus on traditional British apparel into innovative designs. In pretty good condition. Only available for 1 pax.",
+    description:
+      "New LifeWear that combines UNIQLOs focus on design, fit, fabric, and functionality with JW ANDERSONs focus on traditional British apparel into innovative designs. In pretty good condition. Only available for 1 pax.",
   },
   {
     id: "3",
@@ -80,7 +86,8 @@ export const Shirts = [
     price: 40000,
     size: "M",
     image: require("@/assets/images/shirt1-TheAngelsShirt/1.png"),
-    description: "Just your everyday smooth, comfy tee, a wardrobe staple. Male model shown is 6'0",
+    description:
+      "Just your everyday smooth, comfy tee, a wardrobe staple. Male model shown is 6'0",
   },
   {
     id: "2",
@@ -167,3 +174,38 @@ export const Sweaters = [
       "The design incorporates a wide variety of art featuring Ghibli's best-known works, as well as the work of Thai artist Kanyada. Through this collection, we hope that the brilliance and energy of Studio Ghibli reaches each and every one of you. Hey, Let’s Go! Body: 100% Cotton/ Rib: 78% Cotton, 22% Polyester. Machine wash cold, Do not Dry Clean, Tumble dry low.",
   },
 ];
+
+const mockProduct = async (product, type) => {
+  const imageUri = Image.resolveAssetSource(product.image).uri;
+
+  fetch(imageUri)
+    .then((res) => res.blob())
+    .then(async (blob) => {
+      const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+      const newProduct = {
+        ...product,
+        image: file,
+        type: type,
+      };
+      console.log(newProduct);
+      await createProduct(newProduct);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const mockData = async () => {
+  for (const product of Pants) {
+    await mockProduct(product, "pants");
+  }
+  for (const product of Skirts) {
+    await mockProduct(product, "skirts");
+  }
+  for (const product of Shirts) {
+    await mockProduct(product, "shirts");
+  }
+  for (const product of Sweaters) {
+    await mockProduct(product, "sweaters");
+  }
+};
