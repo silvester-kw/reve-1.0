@@ -68,7 +68,7 @@ export default function Bag() {
             <Text className="text-sm">{item.brand}</Text>
             <Text className="text-sm font-bold just">{item.size}</Text>
           </View>
-          <Text className="text-sm mr-2">{currencyFormatter.format(item.price)} / Week</Text>
+          <Text className="text-sm mr-2">{currencyFormatter.format(item.price)} / Batch</Text>
         </View>
       </View>
     );

@@ -1,10 +1,10 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { ScrollView, Text, View, Image } from "react-native";
+import { Modal, ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 import { FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useUser } from "@/hooks/useUser";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const currencyFormatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
@@ -14,6 +14,9 @@ const currencyFormatter = new Intl.NumberFormat("id-ID", {
 export default function Purchase() {
   const { user } = useUser();
   const router = useRouter();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("QRIS");
 
   const clothes = [useLocalSearchParams("clothes")];
 
@@ -53,7 +56,7 @@ export default function Purchase() {
             {/* <Text className="text-sm">{item.brand}</Text> */}
             <Text className="text-sm font-bold">{item.size}</Text>
           </View>
-          <Text className="text-sm mr-2">{currencyFormatter.format(item.price)} / Week</Text>
+          <Text className="text-sm mr-2">{currencyFormatter.format(item.price)} / Batch</Text>
         </View>
       </View>
     );
@@ -64,12 +67,62 @@ export default function Purchase() {
       <ScrollView showsVerticalScrollIndicator={false} className="w-full overflow-visible gap-y-4 max-w-full">
         <FlatList data={clothes} renderItem={renderClothe} keyExtractor={(item) => item.id} scrollEnabled={false} className="w-full overflow-visible mb-8" />
         <View className="flex flex-col gap-y-2">
-          <Text className="text-lg font-extrabold text-gray-700">payment method</Text>
+          <Text className="text-lg font-extrabold text-gray-700">Payment Method</Text>
           <View className="flex flex-row gap-x-2 border-2 m-0 border-neutral-400 rounded-lg px-2 py-3">
-            <View className="flex flex-col items-start">
-              <Text className="text-lg font-bold">QRIS</Text>
-              <Text className="text-sm">+ 0% Charge</Text>
-            </View>
+            <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)} className="flex flex-col items-start w-full">
+              <Text className="text-lg font-bold">{paymentMethod}</Text>
+              <Text className="text-sm">+ {paymentMethod == "QRIS" ? 0 : 5}% Charge</Text>
+            </TouchableOpacity>
+
+            {isModalVisible && (
+              <Modal
+                isModalVisible={isModalVisible}
+                animationType="slide" // aa
+                transparent={true}
+                className="h-full justify-end"
+              >
+                <View className="w-full h-full justify-end">
+                  <View className="w-full bg-slate-200 rounded-t-3xl pt-10 border-2 border-gray-300 space-y-3">
+                    <View className="flex flex-row justify-center items-center">
+                      <Text className="text-xl font-bold">Payment Method</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => (setPaymentMethod("BNI Virtual Account"), setIsModalVisible(!isModalVisible))} className="flex flex-row mx-8 border rounded-xl border-gray-400 px-2 py-4">
+                      <View className="w-[30%] justify-center items-center">
+                        <Image source={require("@/assets/images/bank/bni-logo.png")} />
+                      </View>
+                      <Text>BNI Virtual Account</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => (setPaymentMethod("BCA Virtual Account"), setIsModalVisible(!isModalVisible))} className="flex flex-row mx-8 border rounded-xl border-gray-400 px-2 py-4">
+                      <View className="w-[30%] justify-center items-center">
+                        <Image source={require("@/assets/images/bank/bca-logo.png")} />
+                      </View>
+                      <Text>BCA Virtual Account</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => (setPaymentMethod("Bri Virtual Account"), setIsModalVisible(!isModalVisible))} className="flex flex-row mx-8 border rounded-xl border-gray-400 px-2 py-4">
+                      <View className="w-[30%] justify-center items-center">
+                        <Image source={require("@/assets/images/bank/bri-logo.png")} />
+                      </View>
+                      <Text>Bri Virtual Account</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => (setPaymentMethod("Mandiri Virtual Account"), setIsModalVisible(!isModalVisible))} className="flex flex-row mx-8 border rounded-xl border-gray-400 px-2 py-4">
+                      <View className="w-[30%] justify-center items-center">
+                        <Image source={require("@/assets/images/bank/mandiri-logo.png")} />
+                      </View>
+                      <Text>Mandiri Virtual Account</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => (setPaymentMethod("QRIS"), setIsModalVisible(!isModalVisible))} className="flex flex-row mx-8 border rounded-xl border-gray-400 px-2 py-4">
+                      <View className="w-[30%] justify-center items-center">
+                        <Image source={require("@/assets/images/bank/qris-logo.png")} />
+                      </View>
+                      <Text>QRIS</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)}>
+                      <Text>TUTUP</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
+            )}
           </View>
         </View>
         <View className="flex flex-col gap-y-2">
@@ -83,16 +136,32 @@ export default function Purchase() {
         </View>
         <View className="flex flex-col gap-y-0 ">
           <View className="flex flex-row justify-between items-center">
-            <Text className="text-md text-gray-700 mt-4">Subtotal</Text>
-            <Text className="text-md text-gray-700 mt-4">{currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0))}</Text>
+            <Text className="text-lg text-gray-500 mt-4">Subtotal</Text>
+            <Text className="text-lg text-gray-500 mt-4">{currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0))}</Text>
           </View>
           <View className="flex flex-row justify-between items-center">
-            <Text className="text-md text-gray-700 mt-4">Delivery Fee</Text>
-            <Text className="text-md text-gray-700 mt-4">Rp 0</Text>
+            <Text className="text-lg text-gray-500 mt-2">Payment Fee ({paymentMethod == "QRIS" ? 0 : 5}%)</Text>
+            {paymentMethod == "QRIS" ? (
+              <Text className="text-lg text-gray-500 mt-2">{currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0) * 0)}</Text>
+            ) : (
+              <Text className="text-lg text-gray-500 mt-2">{currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0) * 0.05)}</Text>
+            )}
           </View>
           <View className="flex flex-row justify-between items-center">
-            <Text className="text-md text-gray-700 mt-4">Total</Text>
-            <Text className="text-xl font-bold text-gray-700 mt-4">{currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0))}</Text>
+            <Text className="text-lg text-gray-500 mt-2">Deposit (7%)</Text>
+            <Text className="text-lg text-gray-500 mt-2">{currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0) * 0.07)}</Text>
+          </View>
+          <View className="flex flex-row justify-between items-center">
+            <Text className="text-lg font-black text-[#BB8A26] mt-2">Badge Discount (5%)</Text>
+            <Text className="text-lg font-black text-[#BB8A26] mt-2">- {currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0) * 0.05)}</Text>
+          </View>
+          <View className="flex flex-row justify-between items-center">
+            <Text className="text-lg text-gray-500 mt-2">Total</Text>
+            {paymentMethod == "QRIS" ? (
+              <Text className="text-xl font-bold text-gray-500 mt-2">{currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0) * 1.02)}</Text>
+            ) : (
+              <Text className="text-xl font-bold text-gray-500 mt-2">{currencyFormatter.format(clothes.reduce((acc, curr) => acc + curr.price, 0) * 1.07)}</Text>
+            )}
           </View>
         </View>
         <Button mode="contained" onPress={() => router.push("/purchase/confirmed")} className="mt-4 rounded-md h-12 items-center justify-center" buttonColor="black" labelStyle={{ width: "100%" }} textColor="white">
