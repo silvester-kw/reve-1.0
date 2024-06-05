@@ -29,6 +29,16 @@ const initialItems = [
 export default function Closet() {
   const router = useRouter();
 
+  const batchDates = {};
+  batchDates[1] = ["5 May 2024", "11 May 2024"];
+  batchDates[2] = ["12 May 2024", "18 May 2024"];
+  batchDates[3] = ["19 May 2024", "25 May 2024"];
+  batchDates[4] = ["26 May 2024", "1 Jun 2024"];
+  batchDates[5] = ["2 Jun 2024", "8 Jun 2024"];
+  batchDates[6] = ["9 Jun 2024", "15 Jun 2024"];
+  batchDates[7] = ["16 Jun 2024", "22 Jun 2024"];
+  batchDates[8] = ["23 Jun 2024", "29 Jun 2024"];
+
   const { user } = useUser();
 
   useEffect(() => {
@@ -61,6 +71,7 @@ export default function Closet() {
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
           <Header title="My Closet" />
+          <Text>{batchDates[3][0]}</Text>
 
           <FlatList data={items} keyExtractor={(item) => item.id} renderItem={renderItem} />
         </View>

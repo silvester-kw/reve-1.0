@@ -45,6 +45,16 @@ export default function Bag() {
   const clothe = { id, name, brand, image, size, description, price };
   const test = true; //ganti dengan data jumlah pembelian / bag
 
+  const batchDates = {};
+  batchDates[1] = ["5 May 2024", "11 May 2024"];
+  batchDates[2] = ["12 May 2024", "18 May 2024"];
+  batchDates[3] = ["19 May 2024", "25 May 2024"];
+  batchDates[4] = ["26 May 2024", "1 Jun 2024"];
+  batchDates[5] = ["2 Jun 2024", "8 Jun 2024"];
+  batchDates[6] = ["9 Jun 2024", "15 Jun 2024"];
+  batchDates[7] = ["16 Jun 2024", "22 Jun 2024"];
+  batchDates[8] = ["23 Jun 2024", "29 Jun 2024"];
+
   const renderClothes = ({ item }) => {
     return (
       <View className="flex flex-row pt-1 pb-2 border-[1px] rounded-lg justify-start items-center gap-2 m-0  my-1">
@@ -81,10 +91,8 @@ export default function Bag() {
             <FlatList data={BagData} renderItem={renderClothes} keyExtractor={(item) => item.id} scrollEnabled={false} className="w-full overflow-visible mb-8" />
             <View className="flex justify-center border-2 rounded-lg">
               <Text className="font-bold text-lg text-center">Positive Savings</Text>
-              {!test &&(
-              <Text className="text-center">No contribution yet. Let's rent more!</Text>
-              )}
-              {test &&(
+              {!test && <Text className="text-center">No contribution yet. Let's rent more!</Text>}
+              {test && (
                 <View>
                   <Text className="text-center">Yay! Look how much you have impact the world!</Text>
                   <View className="flex flex-row px-4 pt-2 justify-center">
@@ -112,8 +120,6 @@ export default function Bag() {
                   </View>
                 </View>
               )}
-
-
             </View>
             <View>
               <Text className="font-bold text-lg mt-6">Recommendations</Text>

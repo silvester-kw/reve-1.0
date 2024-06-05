@@ -39,7 +39,6 @@ const Space = () => {
                 <Image source={require("@/assets/images/gold-medal.png")} />
               </View>
             </View>
-
             <View style={styles.tabs}>
               <TouchableOpacity style={[styles.tab, tab === "missions" && styles.activeTab]} onPress={() => setTab("missions")}>
                 <Text style={styles.tabText}>Missions</Text>
