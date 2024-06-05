@@ -1,5 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  fetchSignInMethodsForEmail,
+} from "firebase/auth";
+
+import { createUser, blankUser } from "@/db/user";
+import { valiateFields } from "@/lib/validator";
 
 const defaultContext = {
   user: {
@@ -44,19 +54,43 @@ export const UserProvider = ({ children }) => {
   const context = {
     user,
     auth: auth,
-    register: async (email, password) => {
+    register: async (email, password, userInfo = blankUser) => {
+      const requiredFields = ["email", "password", "name"];
+
+      const isValid = valiateFields(
+        {
+          email,
+          password,
+          ...userInfo,
+        },
+        requiredFields
+      );
+
+      if (!isValid) {
+        return null;
+      }
+
+      // check if email is already registered
+      const methods = await fetchSignInMethodsForEmail(auth, email);
+      if (methods.length > 0) {
+        return null;
+      }
+
       const res = await createUserWithEmailAndPassword(auth, email, password);
       if (!res.user) {
         return null;
       }
 
-      const userInfo = {
+      userInfo.id = res.user.uid;
+      await createUser(userInfo);
+
+      const userRes = {
         id: res.user.uid,
         email: res.user.email,
       };
-      setUser(userInfo);
+      setUser(userRes);
 
-      return userInfo;
+      return userRes;
     },
     login: async (email, password) => {
       const res = await signInWithEmailAndPassword(auth, email, password);
@@ -79,5 +113,7 @@ export const UserProvider = ({ children }) => {
     },
   };
 
-  return <UserContext.Provider value={context}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={context}>{children}</UserContext.Provider>
+  );
 };
