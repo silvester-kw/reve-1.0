@@ -8,6 +8,7 @@ import { useUser } from "@/hooks/useUser";
 
 const Space = () => {
   const router = useRouter();
+  const [claim, setClaim] = useState(false);
 
   const { user } = useUser();
 
@@ -26,8 +27,17 @@ const Space = () => {
         <View style={styles.container}>
           <Header title="My Space" />
           <ScrollView>
-            <View style={styles.gold}>
-              <Image source={require("@/assets/images/gold.png")} style={styles.image} />
+            <View className="w-full px-6 flex flex-row items-center justify-between mb-8">
+              <View>
+                <Text className="font-black text-[32px] text-[#BB8A26] mt-6">Gold</Text>
+                <Image source={require("@/assets/images/gold-bar.png")} className="w-[235px] mt-4" />
+                <Text className="font-regular text-[14px] text-[#646464] mt-2">
+                  {claim ? 675 : 700} pts to unlock <Text className="font-semibold">Platinum</Text>
+                </Text>
+              </View>
+              <View>
+                <Image source={require("@/assets/images/gold-medal.png")} />
+              </View>
             </View>
             <View style={styles.tabs}>
               <TouchableOpacity style={[styles.tab, tab === "missions" && styles.activeTab]} onPress={() => setTab("missions")}>
@@ -42,18 +52,147 @@ const Space = () => {
             </View>
             <View style={styles.tabContent}>
               {tab === "missions" && (
-                <View style={styles.imageContainer}>
-                  <Image source={require("@/assets/images/missions.png")} style={styles.imageMissions} />
+                <View className="w-full px-6">
+                  {!claim && (
+                    <View className="flex flex-row justify-between items-center py-4 border-b-2">
+                      <View className="gap-1">
+                        <Text className="text-[16px] font-black">Open ReVe app (daily)</Text>
+                        <TouchableOpacity onPress={() => setClaim(true)}>
+                          <Text className="text-[16px] font-black">(claim now)</Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View className="flex flex-row items-center">
+                        <Image source={require("@/assets/images/reve-point.png")} />
+                        <Text className="ml-2 text-[16px] font-black">25 pts</Text>
+                      </View>
+                    </View>
+                  )}
+                  <View className="flex flex-row justify-between items-center py-4 border-b-2">
+                    <View className="gap-1">
+                      <Text className="text-[16px] font-medium">Open sweater catalogue (daily)</Text>
+                      <Text className="text-[16px] font-medium">(0/1)</Text>
+                    </View>
+                    <View className="flex flex-row items-center">
+                      <Image source={require("@/assets/images/reve-point.png")} />
+                      <Text className="ml-2 text-[16px] font-medium">25 pts</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row justify-between items-center py-4 border-b-2">
+                    <View className="gap-1">
+                      <Text className="text-[16px] font-medium">Open 5 items (daily)</Text>
+                      <Text className="text-[16px] font-medium">(4/5)</Text>
+                    </View>
+                    <View className="flex flex-row items-center">
+                      <Image source={require("@/assets/images/reve-point.png")} />
+                      <Text className="ml-2 text-[16px] font-medium">30 pts</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row justify-between items-center py-4 border-b-2">
+                    <View className="gap-1">
+                      <Text className="text-[16px] font-medium">Rent 2 items (weekly)</Text>
+                      <Text className="text-[16px] font-medium">(1/2)</Text>
+                    </View>
+                    <View className="flex flex-row items-center">
+                      <Image source={require("@/assets/images/reve-point.png")} />
+                      <Text className="ml-2 text-[16px] font-medium">250 pts</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row justify-between items-center py-4 border-b-2">
+                    <View className="gap-1">
+                      <Text className="text-[16px] font-medium">Rent 10 items in total</Text>
+                      <Text className="text-[16px] font-medium">(7/10)</Text>
+                    </View>
+                    <View className="flex flex-row items-center">
+                      <Image source={require("@/assets/images/reve-point.png")} />
+                      <Text className="ml-2 text-[16px] font-medium">1500 pts</Text>
+                    </View>
+                  </View>
+                  {claim && (
+                    <View className="flex flex-row justify-between items-center py-4 border-b-2">
+                      <View className="gap-1">
+                        <Text className="text-[16px] text-[#0EAB00] font-medium">Open ReVe app (daily)</Text>
+                        <Text className="text-[16px] text-[#0EAB00] font-black">(completed)</Text>
+                      </View>
+                      <View className="flex flex-row items-center">
+                        <Image source={require("@/assets/images/reve-point.png")} />
+                        <Text className="ml-2 text-[16px] text-[#0EAB00] font-black">25 pts</Text>
+                      </View>
+                    </View>
+                  )}
+                  <View className="flex flex-row justify-between items-center py-4 border-b-2">
+                    <View className="gap-1">
+                      <Text className="text-[16px] text-[#0EAB00] font-black">Open ReVe app (daily)</Text>
+                      <Text className="text-[16px] text-[#0EAB00] font-black">(completed)</Text>
+                    </View>
+                    <View className="flex flex-row items-center">
+                      <Image source={require("@/assets/images/reve-point.png")} />
+                      <Text className="ml-2 text-[16px] text-[#0EAB00] font-black">1000 pts</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row justify-between items-center py-4 border-b-2">
+                    <View className="gap-1">
+                      <Text className="text-[16px] text-[#0EAB00] font-black">Open ReVe app (daily)</Text>
+                      <Text className="text-[16px] text-[#0EAB00] font-black">(completed)</Text>
+                    </View>
+                    <View className="flex flex-row items-center">
+                      <Image source={require("@/assets/images/reve-point.png")} />
+                      <Text className="ml-2 text-[16px] text-[#0EAB00] font-black">500 pts</Text>
+                    </View>
+                  </View>
                 </View>
               )}
               {tab === "perks" && (
-                <View style={styles.imageContainer}>
-                  <Image source={require("@/assets/images/perks.png")} style={styles.imagePerks} />
+                <View className="w-full px-6">
+                  <View className="flex flex-row space-x-2 items-center py-4 border-b-2">
+                    <Image source={require("@/assets/images/bronze-perk.png")} />
+                    <View className="">
+                      <Text className="text-[16px] text-[#DC9E79] font-semibold ">Bronze</Text>
+                      <Text className="font-medium">1% discount for every purchase</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row space-x-2.5 items-center py-4 border-b-2">
+                    <Image className="ml-1.5" source={require("@/assets/images/silver-perk.png")} />
+                    <View className="">
+                      <Text className="text-[16px] text-[#C4C4C4] font-semibold ">Silver</Text>
+                      <Text className="font-medium">2% discount for every purchase</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row space-x-2 items-center py-4 border-b-2">
+                    <Image className="ml-1.5" source={require("@/assets/images/gold-perk.png")} />
+                    <View className="">
+                      <Text className="text-[16px] text-[#BB8A26] font-semibold ">Gold</Text>
+                      <Text className="font-medium">5% discount for every purchase</Text>
+                      <Text className="font-medium">New daily mission unlocked</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row space-x-2 items-center py-4 border-b-2">
+                    <Image className="ml-2" source={require("@/assets/images/platinum-perk.png")} />
+                    <View className="">
+                      <Text className="text-[16px] text-[#97E1FE] font-semibold ">Platinum</Text>
+                      <Text className="font-medium">10% discount for every purchase</Text>
+                      <Text className="font-medium">Special daily mission unlocked</Text>
+                    </View>
+                  </View>
                 </View>
               )}
               {tab === "contributions" && (
-                <View style={styles.imageContainer}>
-                  <Image source={require("@/assets/images/contributions.png")} style={styles.imageContributions} />
+                <View className="items-center space-y-4 mt-4">
+                  <Text className="text-[20px] font-bold">Keep it up!</Text>
+                  <View className="w-[200px] h-[200px] border-2 rounded-xl justify-center items-center">
+                    <Image className="w-[82px] h-[82px]" source={require("@assets/images/carbon-icon.png")} />
+                    <Text className="text-[16px] font-bold">Carbon Dioxide</Text>
+                    <Text className="text-[16px] font-bold">~(data) Liter</Text>
+                  </View>
+                  <View className="w-[200px] h-[200px] border-2 rounded-xl justify-center items-center">
+                    <Image className="w-[82px] h-[82px]" source={require("@assets/images/water-icon.png")} />
+                    <Text className="text-[16px] font-bold">Water</Text>
+                    <Text className="text-[16px] font-bold">~(data) Liter</Text>
+                  </View>
+                  <View className="w-[200px] h-[200px] border-2 rounded-xl justify-center items-center">
+                    <Image className="w-[82px] h-[82px]" source={require("@assets/images/trash-icon.png")} />
+                    <Text className="text-[16px] font-bold">Textile Waste</Text>
+                    <Text className="text-[16px] font-bold">~(data) Liter</Text>
+                  </View>
                 </View>
               )}
             </View>
