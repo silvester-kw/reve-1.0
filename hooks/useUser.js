@@ -48,6 +48,7 @@ export const UserProvider = ({ children }) => {
       }
     });
 
+    auth.updateCurrentUser(auth.currentUser);
     return unsubscribe;
   }, []);
 

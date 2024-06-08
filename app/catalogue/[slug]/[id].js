@@ -10,10 +10,33 @@ import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { getDownloadUrl } from "@/firebase/storage";
 
+import { bagItem } from "@/db/user";
+import { useUser } from "@/hooks/useUser";
+
+import { Picker } from "@react-native-picker/picker";
+
 export default function Page() {
   const router = useRouter();
+  const { user } = useUser();
 
   const [imageUrl, setImageUrl] = useState(null);
+  const [isBagging, setIsBagging] = useState(false);
+
+  const [batch, setBatch] = useState(0);
+
+  const currentDay = new Date();
+  const nextMonday = new Date();
+  nextMonday.setDate(
+    currentDay.getDate() + ((1 + 7 - currentDay.getDay()) % 7)
+  );
+  const batchDates = [];
+  for (let i = 1; i <= 8; i++) {
+    const start = new Date(nextMonday);
+    start.setDate(start.getDate() + (i - 1) * 7);
+    const end = new Date(nextMonday);
+    end.setDate(end.getDate() + i * 7 - 1);
+    batchDates.push([start, end]);
+  }
 
   const { id, name, brand, image, size, description, price } =
     useLocalSearchParams();
@@ -24,6 +47,26 @@ export default function Page() {
       setImageUrl(url);
     });
   }, []);
+
+  const handleBagItem = (destination) => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+
+    setIsBagging(true);
+    bagItem(user.id, clothe.id, batchDates[batch])
+      .then(() => {
+        alert("Item added to bag");
+        router.push(destination);
+      })
+      .catch((e) => {
+        alert(e.message);
+      })
+      .finally(() => {
+        setIsBagging(false);
+      });
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -43,14 +86,36 @@ export default function Page() {
         <Text style={styles.size}>Size: {size}</Text>
         <Text style={styles.description}>{description}</Text>
         <View>
-          {/* <TouchableOpacity style={styles.addToBagButton}>
-          <Text style={styles.buttonText}>Add to Bag</Text>
-        </TouchableOpacity> */}
+          <Picker
+            testID="picker"
+            selectedValue={batch}
+            style={styles.picker}
+            onValueChange={(v) => setBatch(v)}
+            mode="dropdown">
+            {batchDates.map((batchDate, i) => (
+              <Picker.Item
+                key={i}
+                label={`Batch ${
+                  i + 5
+                } (${batchDate[0].toLocaleDateString()} - ${batchDate[1].toLocaleDateString()})`}
+                value={i}
+                enabled={i !== batch}
+                style={{ color: i === batch ? "#5d1ba8" : "#000" }}
+              />
+            ))}
+          </Picker>
+        </View>
+        <View>
           <TouchableOpacity
-            style={styles.orderNowButton}
-            onPress={() =>
-              router.push({ pathname: "/purchase", params: clothe })
-            }>
+            className="py-[12px] items-center border-4 border-[#B71800] rounded-lg"
+            onPress={() => handleBagItem("/bag")}>
+            <Text className="text-[18px] font-bold text-[#B71800]">
+              Add to Bag
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className="mt-1 py-[12px] items-center border-4 bg-[#B71800] border-[#B71800] rounded-lg"
+            onPress={() => handleBagItem("/purchase")}>
             <Text style={styles.buttonText}>Order Now</Text>
           </TouchableOpacity>
         </View>
@@ -69,6 +134,10 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     borderRadius: 10,
+  },
+  picker: {
+    height: 50,
+    width: "100%",
   },
   imageContainer: {
     width: "100%",
@@ -121,7 +190,7 @@ const styles = StyleSheet.create({
     textAlign: "justify",
   },
   addToBagButton: {
-    backgroundColor: "#ff6347",
+    backgroundColor: "#fff",
     paddingVertical: 15,
     borderRadius: 5,
     alignItems: "center",

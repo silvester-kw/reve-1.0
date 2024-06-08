@@ -18,6 +18,7 @@ export default function ProductCard({ item }) {
       setImage(url);
     });
   }, []);
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -30,30 +31,35 @@ export default function ProductCard({ item }) {
         style={{
           flexDirection: "column",
           display: "flex",
-          flexWrap: "wrap",
           width: "100%",
           alignItems: "center",
-          justifyContent: "center",
           borderRadius: 8,
-          borderWidth: 1,
-          padding: 8,
+          borderWidth: 2,
+          borderColor: "#aaa",
+          paddingVertical: 8,
+          gap: 0,
         }}>
+        <View
+          className="flex flex-col rounded-md items-center w-full gap-0 m-0 p-0">
         {image ? (
           <Image
             source={{
               uri: image,
             }}
             style={styles.image}
+            className="rounded-md m-0 p-0 mx-auto"
           />
         ) : (
           <Image
             source={require("@/assets/images/placeholder.png")}
             style={styles.image}
+            className="rounded-md m-0 p-0 mx-auto"
           />
         )}
-        <Text style={styles.name}>{item.name}</Text>
+        </View>
+        <Text style={styles.name} className="text-center">{item.name}</Text>
         <View style={styles.priceAndSizeContainer}>
-          <Text style={styles.price}>
+          <Text style={styles.price} className="text-center">
             {currencyFormatter.format(item.price)}
           </Text>
         </View>
@@ -73,8 +79,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   image: {
-    width: 100,
-    height: 100,
+    backgroundColor: "red",
+    borderRadius: 8,
+    marginHorizontal:"auto",
   },
   details: {
     flex: 1,
@@ -83,6 +90,9 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: "bold",
+    textAlign: "center",
+    textAlignVertical: "center",
+    marginHorizontal: "auto",
   },
   brand: {
     fontSize: 16,

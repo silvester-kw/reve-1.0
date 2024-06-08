@@ -1,6 +1,18 @@
-import { collection, addDoc, setDoc, doc, query, getDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  setDoc,
+  doc,
+  query,
+  getDoc,
+  getDocs,
+  where,
+} from "firebase/firestore";
 
 import { db } from "@/firebase/db";
+
+import { getUser } from "./user";
+import { getProduct } from "./product";
 
 // for datatype without using typescript
 export const blankClosetItem = {
@@ -8,14 +20,6 @@ export const blankClosetItem = {
   productId: "",
   batch: 0,
   status: "",
-  snapshot: {
-    name: "",
-    price: 0,
-    size: "",
-    image: "",
-    description: "",
-    type: "",
-  }
 };
 
 export const fieldType = {
@@ -27,19 +31,53 @@ export const fieldType = {
 
 export const requiredFields = ["userId", "productId", "batch"];
 
-const createClosetItem = async (closetItem = blankClosetItem) => {
-  if (!closetItem || closetItem === blankClosetItem) {
-    return null;
+const addClosetItem = async (userId, productId, batch) => {
+  if (!userId || !productId || !batch) {
+    throw new Error("userId, productId, and batch are required");
   }
 
-  try {
-    const closetItemRef = doc(db, "closetItems", closetItem.id);
-    await setDoc(closetItemRef, closetItem);
+  const closetItemRef = doc(collection(db, "closetItems"));
+  const closetItemId = closetItemRef.id;
 
-    return closetItem;
-  } catch (e) {
-    console.error("Error adding document: ", e);
+  const newClosetItem = {
+    ...blankClosetItem,
+    id: closetItemId,
+    userId,
+    productId,
+    batch,
+    status: "active",
+  };
+
+  await setDoc(closetItemRef, newClosetItem);
+
+  return newClosetItem;
+};
+
+const addClosetItems = async (
+  userId,
+  items // [{ productId, batch }]
+) => {
+  if (!userId || !items.length) {
+    throw new Error("userId and items are required");
   }
+
+  const closetItemsRef = collection(db, "closetItems");
+
+  const newClosetItems = items.map((item) => {
+    return {
+      ...blankClosetItem,
+      userId,
+      productId: item.itemId,
+      batch: item.batch,
+      status: "active",
+    };
+  });
+
+  for (const newClosetItem of newClosetItems) {
+    await addDoc(closetItemsRef, newClosetItem);
+  }
+
+  return newClosetItems;
 };
 
 const getClosetItem = async (id) => {
@@ -71,10 +109,59 @@ const getClosetItemsByUserId = async (userId) => {
     const q = query(closetItemsRef, where("userId", "==", userId));
     const querySnapshot = await getDocs(q);
 
-    return querySnapshot.docs.map((doc) => doc.data());
+    return querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      data.batch = data.batch.map((timestamp) => timestamp.toDate());
+      return data;
+    });
   } catch (e) {
     console.error("Error getting documents: ", e);
   }
 };
 
-export { createClosetItem, getClosetItem, getClosetItemsByUserId };
+const populateClosetItem = async (closetItem) => {
+  if (!closetItem) {
+    return null;
+  }
+
+  const populatedClosetItem = { ...closetItem };
+
+  populatedClosetItem.user = await getUser(closetItem.userId);
+  populatedClosetItem.product = await getProduct(closetItem.productId);
+
+  return populatedClosetItem;
+};
+
+const populateClosetItems = async (closetItems) => {
+  if (!closetItems) {
+    return null;
+  }
+
+  const populatedClosetItems = [];
+
+  for (const closetItem of closetItems) {
+    populatedClosetItems.push(await populateClosetItem(closetItem));
+  }
+
+  return populatedClosetItems;
+};
+
+const getPopulatedClosetItemsByUserId = async (userId) => {
+  if (!userId) {
+    return null;
+  }
+
+  const closetItems = await getClosetItemsByUserId(userId);
+
+  return await populateClosetItems(closetItems);
+};
+
+export {
+  addClosetItem,
+  getClosetItem,
+  getClosetItemsByUserId,
+  populateClosetItem,
+  populateClosetItems,
+  getPopulatedClosetItemsByUserId,
+  addClosetItems,
+};

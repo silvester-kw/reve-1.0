@@ -1,12 +1,24 @@
-import React, { useEffect } from "react";
-import { FlatList, View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  FlatList,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 import Header from "@/components/Header";
 import { useNavigation, useRouter } from "expo-router";
-import { BagData } from "@/data/bag";
 import { Skirts } from "@/data/catalog";
 
 import { useUser } from "@/hooks/useUser";
+import { getPopulatedBagItems, clearBag } from "@/db/user";
+import { getDownloadUrl } from "@/firebase/storage";
 
 const currencyFormatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
@@ -18,60 +30,116 @@ const ShirtRecommendations = () => {
     <View style={styles.shirtItem}>
       <Image source={item.image} style={styles.shirtImage} />
       <Text style={styles.shirtName}>{item.name}</Text>
-      <Text style={styles.shirtPrice}>{currencyFormatter.format(item.price)}</Text>
+      <Text style={styles.shirtPrice}>
+        {currencyFormatter.format(item.price)}
+      </Text>
     </View>
   );
 
-  return <FlatList data={Skirts} renderItem={renderSkirts} keyExtractor={(item) => item.id} horizontal showsHorizontalScrollIndicator={false} style={styles.shirtList} />;
+  return (
+    <FlatList
+      data={Skirts}
+      renderItem={renderSkirts}
+      keyExtractor={(item) => item.id}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={styles.shirtList}
+    />
+  );
 };
+
+function RenderClothes({ item }) {
+  const product = item.product;
+  const [imageUrl, setImageUrl] = useState(null);
+
+  useEffect(() => {
+    getDownloadUrl(product.image).then((url) => {
+      setImageUrl(url);
+    });
+  }, []);
+
+  return (
+    <View className="flex flex-row pt-1 pb-2 border-[1px] rounded-lg justify-start items-center gap-2 m-0  my-1">
+      <Checkbox status="checked" color="#404040" />
+      <View className="flex flex-row border-2 rounded-md border-gray-400 w-12 h-16">
+        {imageUrl ? (
+          <Image
+            source={{
+              uri: imageUrl,
+            }}
+            style={styles.image}
+            className="rounded-md m-0 p-0 mx-auto max-w-full max-h-full w-full h-full"
+          />
+        ) : (
+          <Image
+            source={require("@/assets/images/placeholder.png")}
+            style={styles.image}
+            className="rounded-md m-0 p-0 mx-auto max-w-full max-h-full w-full h-full"
+          />
+        )}
+      </View>
+      <View className="flex flex-col gap-1">
+        <Text className="text-lg font-bold">{product.name}</Text>
+        <View className="flex flex-row justify-between">
+          <Text className="text-sm">{product.brand}</Text>
+          <Text className="text-sm font-bold just">{product.size}</Text>
+        </View>
+        <Text className="text-sm mr-2">
+          {currencyFormatter.format(product.price)} / Batch
+        </Text>
+      </View>
+    </View>
+  );
+}
 
 export default function Bag() {
   const router = useRouter();
   const { user } = useUser();
 
+  const [bagItems, setBagItems] = useState([]);
+  const [Subtotal, setSubtotal] = useState(0);
+
   useEffect(() => {
     if (!user) {
       router.push("/login");
     }
+
+    getPopulatedBagItems(user.id).then((items) => {
+      setBagItems(items);
+    });
   }, []);
 
-  const id = "1";
-  const name = BagData[0].name;
-  const brand = BagData[0].brand;
-  const image = BagData[0].image;
-  const size = BagData[0].size;
-  const description = BagData[0].description;
-  const price = BagData[0].price;
-  const clothe = { id, name, brand, image, size, description, price };
-  const test = true; //ganti dengan data jumlah pembelian / bag
+  useEffect(() => {
+    let total = 0;
+    bagItems.forEach((item) => {
+      total += item.product.price;
+    });
+    setSubtotal(total);
+  }, [bagItems]);
 
-  const batchDates = {};
-  batchDates[1] = ["5 May 2024", "11 May 2024"];
-  batchDates[2] = ["12 May 2024", "18 May 2024"];
-  batchDates[3] = ["19 May 2024", "25 May 2024"];
-  batchDates[4] = ["26 May 2024", "1 Jun 2024"];
-  batchDates[5] = ["2 Jun 2024", "8 Jun 2024"];
-  batchDates[6] = ["9 Jun 2024", "15 Jun 2024"];
-  batchDates[7] = ["16 Jun 2024", "22 Jun 2024"];
-  batchDates[8] = ["23 Jun 2024", "29 Jun 2024"];
+  const currentDay = new Date();
+  const nextMonday = new Date();
+  nextMonday.setDate(
+    currentDay.getDate() + ((1 + 7 - currentDay.getDay()) % 7)
+  );
+  const batchDates = [];
+  for (let i = 1; i <= 8; i++) {
+    const start = new Date(nextMonday);
+    start.setDate(start.getDate() + (i - 1) * 7);
+    const end = new Date(nextMonday);
+    end.setDate(end.getDate() + i * 7 - 1);
+    batchDates.push([start, end]);
+  }
 
-  const renderClothes = ({ item }) => {
-    return (
-      <View className="flex flex-row pt-1 pb-2 border-[1px] rounded-lg justify-start items-center gap-2 m-0  my-1">
-        <Checkbox status="checked" color="#404040" />
-        <View className="flex flex-row border-2 rounded-md border-gray-400 w-12 h-16">
-          <Image source={item.image} className="max-h-full max-w-full" />
-        </View>
-        <View className="flex flex-col gap-1">
-          <Text className="text-lg font-bold">{item.name}</Text>
-          <View className="flex flex-row justify-between">
-            <Text className="text-sm">{item.brand}</Text>
-            <Text className="text-sm font-bold just">{item.size}</Text>
-          </View>
-          <Text className="text-sm mr-2">{currencyFormatter.format(item.price)} / Batch</Text>
-        </View>
-      </View>
-    );
+  const handleClearAll = () => {
+    clearBag(user.id)
+      .then(() => {
+        alert("Bag cleared");
+        setBagItems([]);
+      })
+      .catch((e) => {
+        alert(e.message);
+      });
   };
 
   return (
@@ -82,44 +150,70 @@ export default function Bag() {
           <ScrollView className="px-8">
             <View style={styles.row1}>
               <TouchableOpacity style={styles.buttonBlack}>
-                <Text style={{ fontWeight: "700", color: "white", fontSize: 12 }}>SELECT ALL</Text>
+                <Text
+                  style={{ fontWeight: "700", color: "white", fontSize: 12 }}>
+                  SELECT ALL
+                </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonRed}>
-                <Text style={{ fontWeight: "700", color: "white", fontSize: 12 }}>CLEAR ALL</Text>
+              <TouchableOpacity
+                style={styles.buttonRed}
+                onPress={handleClearAll}>
+                <Text
+                  style={{ fontWeight: "700", color: "white", fontSize: 12 }}>
+                  CLEAR ALL
+                </Text>
               </TouchableOpacity>
             </View>
-            <FlatList data={BagData} renderItem={renderClothes} keyExtractor={(item) => item.id} scrollEnabled={false} className="w-full overflow-visible mb-8" />
+            <FlatList
+              data={bagItems}
+              renderItem={({ item }) => <RenderClothes item={item} />}
+              keyExtractor={(item) => item.itemId}
+              scrollEnabled={false}
+              className="w-full overflow-visible mb-8"
+            />
             <View className="flex justify-center border-2 rounded-lg">
-              <Text className="font-bold text-lg text-center">Positive Savings</Text>
-              {!test && <Text className="text-center">No contribution yet. Let's rent more!</Text>}
-              {test && (
-                <View>
-                  <Text className="text-center">Yay! Look how much you have impact the world!</Text>
-                  <View className="flex flex-row px-4 pt-2 justify-center">
-                    <View className="flex">
-                      <View className="flex flex-row align-item justify-center">
-                        <Image source={require("@assets/images/Positive-Savings/Vector.png")} />
-                      </View>
-                      <Text className="text-center font-bold mt-1">1.5 M</Text>
-                      <Text className="text-center font-bold">Textile Waste</Text>
+              <Text className="font-bold text-lg text-center">
+                Positive Savings
+              </Text>
+              {/* {!test && <Text className="text-center">No contribution yet. Let's rent more!</Text>}
+              {test && ( */}
+              <View>
+                <Text className="text-center">
+                  Yay! Look how much you have impact the world!
+                </Text>
+                <View className="flex flex-row px-4 pt-2 justify-center">
+                  <View className="flex">
+                    <View className="flex flex-row align-item justify-center">
+                      <Image
+                        source={require("@assets/images/Positive-Savings/Vector.png")}
+                      />
                     </View>
-                    <View className="flex  absolute pt-2">
-                      <View className="flex  flex-row align-item justify-center">
-                        <Image source={require("@assets/images/Positive-Savings/Vector(1).png")} />
-                      </View>
-                      <Text className="text-center font-bold mt-1">2 L</Text>
-                      <Text className="text-center font-bold">Water</Text>
+                    <Text className="text-center font-bold mt-1">1.5 M</Text>
+                    <Text className="text-center font-bold">Textile Waste</Text>
+                  </View>
+                  <View className="flex  absolute pt-2">
+                    <View className="flex  flex-row align-item justify-center">
+                      <Image
+                        source={require("@assets/images/Positive-Savings/Vector(1).png")}
+                      />
                     </View>
-                    <View className="flex ml-28">
-                      <View className="flex flex-row  mt-1 align-item justify-center">
-                        <Image source={require("@assets/images/Positive-Savings/Vector(2).png")} />
-                      </View>
-                      <Text className="text-center font-bold mt-2">1 KG</Text>
-                      <Text className="text-center font-bold">Carbon Dioxide</Text>
+                    <Text className="text-center font-bold mt-1">2 L</Text>
+                    <Text className="text-center font-bold">Water</Text>
+                  </View>
+                  <View className="flex ml-28">
+                    <View className="flex flex-row  mt-1 align-item justify-center">
+                      <Image
+                        source={require("@assets/images/Positive-Savings/Vector(2).png")}
+                      />
                     </View>
+                    <Text className="text-center font-bold mt-2">1 KG</Text>
+                    <Text className="text-center font-bold">
+                      Carbon Dioxide
+                    </Text>
                   </View>
                 </View>
-              )}
+              </View>
+              {/* )} */}
             </View>
             <View>
               <Text className="font-bold text-lg mt-6">Recommendations</Text>
@@ -127,9 +221,17 @@ export default function Bag() {
             <ShirtRecommendations />
             <View className="flex flex-row justify-between">
               <Text className="font-bold text-lg mt-6">Subtotal</Text>
-              <Text className="font-bold text-lg mt-6">Rp 40.000,00</Text>
+              <Text className="font-bold text-lg mt-6">
+                {currencyFormatter.format(Subtotal)}
+              </Text>
             </View>
-            <Button mode="contained" onPress={() => router.push({ pathname: "/purchase/", params: clothe })} className="mt-4 rounded-md h-12 items-center justify-center" buttonColor="black" labelStyle={{ width: "100%" }} textColor="white">
+            <Button
+              mode="contained"
+              onPress={() => router.push({ pathname: "/purchase/" })}
+              className="my-4 rounded-md h-12 items-center justify-center"
+              buttonColor="black"
+              labelStyle={{ width: "100%" }}
+              textColor="white">
               Checkout
             </Button>
           </ScrollView>
@@ -150,8 +252,18 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     position: "relative",
   },
-  buttonRed: { backgroundColor: "#B71800", padding: 8, borderRadius: 5, alignItems: "center" },
-  buttonBlack: { backgroundColor: "#000", padding: 8, borderRadius: 5, alignItems: "center" },
+  buttonRed: {
+    backgroundColor: "#B71800",
+    padding: 8,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  buttonBlack: {
+    backgroundColor: "#000",
+    padding: 8,
+    borderRadius: 5,
+    alignItems: "center",
+  },
   header: {
     width: "100%",
     height: 60,

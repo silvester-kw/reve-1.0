@@ -187,7 +187,6 @@ const mockProduct = async (product, type) => {
         image: file,
         type: type,
       };
-      console.log(newProduct);
       await createProduct(newProduct);
     })
     .catch((err) => {

@@ -3,9 +3,9 @@ import type { ReactNode } from 'react';
 import type { TextProps, GestureResponderEvent } from 'react-native';
 
 export namespace ExpoRouter {
-  type StaticRoutes = `/` | `/(tabs)` | `/_sitemap` | `/bag` | `/catalogue/skirts` | `/catalogue/sweaters` | `/checkout` | `/closet` | `/login` | `/providers` | `/purchase` | `/purchase/confirmed` | `/purchase/data` | `/space`;
-  type DynamicRoutes<T extends string> = `/catalogue/${SingleRoutePart<T>}` | `/catalogue/${SingleRoutePart<T>}/${SingleRoutePart<T>}` | `/catalogue/skirts/${SingleRoutePart<T>}` | `/catalogue/sweaters/${SingleRoutePart<T>}`;
-  type DynamicRouteTemplate = `/catalogue/[slug]` | `/catalogue/[slug]/[id]` | `/catalogue/skirts/[id]` | `/catalogue/sweaters/[id]`;
+  type StaticRoutes = `/` | `/(tabs)` | `/_sitemap` | `/bag` | `/closet` | `/login` | `/providers` | `/purchase` | `/purchase/confirmed` | `/purchase/data` | `/space`;
+  type DynamicRoutes<T extends string> = `/catalogue/${SingleRoutePart<T>}` | `/catalogue/${SingleRoutePart<T>}/${SingleRoutePart<T>}`;
+  type DynamicRouteTemplate = `/catalogue/[slug]` | `/catalogue/[slug]/[id]`;
 
   export type RelativePathString = `./${string}` | `../${string}` | '..';
   export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;

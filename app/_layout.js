@@ -25,14 +25,11 @@ export default function RootLayout() {
     if (fontLoaded && firebaseLoaded) {
       SplashScreen.hideAsync();
     }
-    console.log("connectionCount", connectionCount);
   }, [fontLoaded, firebaseLoaded]);
 
   if (!fontLoaded || !firebaseLoaded) {
     return null;
   }
-
-  console.log(getCollection("users"));
 
   return (
     <Providers>
