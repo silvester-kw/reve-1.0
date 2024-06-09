@@ -8,6 +8,7 @@ export const Pants = [
     price: 20000,
     size: "XL",
     image: require("@/assets/images/pants1/messageImage_1716976824930.jpg"),
+    brand: "Uniqlo",
     description:
       "2-way stretch fabric for a comfortable fit. Smooth cotton twill fabric made from fine-count yarn. Tapered, ankle-length cut with a slim fit. Sleek seam pockets at the sides. Comfortable elastic waistband offers a classic look with a tucked-in top. Suitable for casual or more elegant occasions.",
   },
@@ -17,6 +18,7 @@ export const Pants = [
     price: 20000,
     size: "XL",
     image: require("@/assets/images/pants2/messageImage_1716978172176.jpg"),
+    brand: "Uniqlo",
     description:
       "Incredibly soft denim made from a lyocell and cotton blend. Stylish pleats at the front. Elastic waist at the back for easy outfit changes. Full-length, wide-leg straight cut. BLUE CYCLE JEANS technology reduces the volume of water* used in the finishing process. Water savings may vary between products.",
   },
@@ -26,8 +28,8 @@ export const Pants = [
     price: 15000,
     size: "XL",
     image: require("@/assets/images/pants3/messageImage_1716978806979.jpg"),
-    description:
-      "Smooth AIRism made with slub yarns for a casual style. Pockets on both sides. Elastic waist for easy outfit changes. Adjustable drawstring waist.",
+    brand: "Uniqlo",
+    description: "Smooth AIRism made with slub yarns for a casual style. Pockets on both sides. Elastic waist for easy outfit changes. Adjustable drawstring waist.",
   },
   {
     id: "4",
@@ -35,6 +37,7 @@ export const Pants = [
     price: 20000,
     size: "XL",
     image: require("@/assets/images/pants4/messageImage_1716979084346.jpg"),
+    brand: "Uniqlo",
     description:
       "Made with a rayon-linen-cotton blend fabric for a natural slub look. Pre-washed for a casual feel. Elasticized, drawstring waist. Front tucks. Pockets on both sides. Relaxed fit. A casual and comfortable item for relaxing at home or wearing out and about.",
   },
@@ -47,8 +50,8 @@ export const Skirts = [
     price: 20000,
     size: "XL",
     image: require("@/assets/images/skrit1/messageImage_1716979212960.jpg"),
-    description:
-      "Wrinkle-resistant cotton-nylon blend. Lined sheer skirt. Comfortable elastic waist. Shirring creates a sleek look around the midsection. Shell: 100% Cotton/ Lining: 100% Polyester.",
+    brand: "Uniqlo",
+    description: "Wrinkle-resistant cotton-nylon blend. Lined sheer skirt. Comfortable elastic waist. Shirring creates a sleek look around the midsection. Shell: 100% Cotton/ Lining: 100% Polyester.",
   },
   {
     id: "2",
@@ -56,8 +59,8 @@ export const Skirts = [
     price: 20000,
     size: "XL",
     image: require("@/assets/images/skirt2/messageImage_1716979380032.jpg"),
-    description:
-      "New LifeWear that combines UNIQLOs focus on design, fit, fabric, and functionality with JW ANDERSONs focus on traditional British apparel into innovative designs. In pretty good condition. Only available for 1 pax.",
+    brand: "Uniqlo",
+    description: "New LifeWear that combines UNIQLOs focus on design, fit, fabric, and functionality with JW ANDERSONs focus on traditional British apparel into innovative designs. In pretty good condition. Only available for 1 pax.",
   },
   {
     id: "3",
@@ -65,6 +68,7 @@ export const Skirts = [
     price: 15000,
     size: "XL",
     image: require("@/assets/images/skirt3/messageImage_1716979530723.jpg"),
+    brand: "Uniqlo",
     description:
       "The final chapter of the collaboration with Ines de la Fressange, synonymous with the timeless appeal of French chic. Dungaree fabric with a casual feel. Airy, gathered cut. Elegant long length. Elastic waist for easy outfit changes. Internal waist drawstring for size adjustment. Voluminous paneled design.",
   },
@@ -74,6 +78,7 @@ export const Skirts = [
     price: 20000,
     size: "L",
     image: require("@/assets/images/skirt4/messageImage_1716979837128.jpg"),
+    brand: "Uniqlo",
     description:
       "Elegant fabric with plenty of stretch. Wrap design at the front looks like a skirt. Shorts on the inside make them perfect for active wear. Elastic waist at the back. Accent check pattern. Suitable for business or casual wear.",
   },
@@ -86,8 +91,8 @@ export const Shirts = [
     price: 40000,
     size: "M",
     image: require("@/assets/images/shirt1-TheAngelsShirt/1.png"),
-    description:
-      "Just your everyday smooth, comfy tee, a wardrobe staple. Male model shown is 6'0",
+    brand: "Uniqlo",
+    description: "Just your everyday smooth, comfy tee, a wardrobe staple. Male model shown is 6'0",
   },
   {
     id: "2",
@@ -95,6 +100,7 @@ export const Shirts = [
     price: 10000,
     size: "M",
     image: require("@/assets/images/shirt2-MischiefClassicT-Shirt/1.png"),
+    brand: "Uniqlo",
     description:
       "The standard, traditional t-shirt for everyday wear. Heavyweight 5.3 oz / 180 gsm fabric, solid colors are 100% preshrunk cotton, heather grey is 90% cotton/10% polyester, denim heather is 50% cotton/ 50% polyester. Double-needle hems and neck band for durability.",
   },
@@ -104,6 +110,7 @@ export const Shirts = [
     price: 30000,
     size: "L",
     image: require("@/assets/images/shirts/shirt1.png"),
+    brand: "ZARA",
     description:
       "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
   },
@@ -113,6 +120,7 @@ export const Shirts = [
     price: 30000,
     size: "L",
     image: require("@/assets/images/shirts/shirt2.png"),
+    brand: "ZARA",
     description:
       "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
   },
@@ -122,6 +130,7 @@ export const Shirts = [
     price: 30000,
     size: "L",
     image: require("@/assets/images/shirts/shirt3.png"),
+    brand: "ZARA",
     description:
       "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
   },
@@ -131,6 +140,7 @@ export const Shirts = [
     price: 30000,
     size: "L",
     image: require("@/assets/images/shirts/shirt4.png"),
+    brand: "Uniqlo",
     description:
       "CONSCIOUS CHOICE Shirt in soft cotton flannel with a turn-down collar. buttons down the front and a yoke with a box pleat at the back. Relaxed fit with an open chest pocket, long sleeves with buttoned cuff* and a gently rounded hem.",
   },
@@ -143,6 +153,7 @@ export const Sweaters = [
     price: 30000,
     size: "L",
     image: require("@/assets/images/sweater/messageImage_1716980696228.jpg"),
+    brand: "Uniqlo",
     description:
       "Smooth touch on the inside and out. Special looped lining prevents pilling. Classic V-insert and long ribbing at the neckline. Neck tape helps the collar keep its shape even after repeated washing. Versatile regular silhouette.",
   },
@@ -152,6 +163,7 @@ export const Sweaters = [
     price: 30000,
     size: "L",
     image: require("@/assets/images/sweater2/messageImage_1716981145034.jpg"),
+    brand: "Uniqlo",
     description:
       "Knit with alternating cotton-rayon and polyester threads for a crisp, stretchy fabric that retains its shape. The cut showcases the texture of the fabric. Ribbed hems and cuffs join seamlessly to the body. Ribbed collar seam positioned to minimize skin irritation. Cuff accent stripe placement varies across sizes. Combines the ease of a sweatshirt and the elegance of a knit",
   },
@@ -161,6 +173,7 @@ export const Sweaters = [
     price: 25000,
     size: "M",
     image: require("@/assets/images/sweater3/messageImage_1716983535018.jpg"),
+    brand: "Uniqlo",
     description:
       "Knitted with a combination of cotton-rayon blended yarn and polyester yarn for plenty of body and stretch. Retains its shape. The cut showcases The texture of The knitted fabric. Ribbed hems and cuffs join seamlessly to The body. Ribbed Collar seam positioned to minimize skin irritation. As easy to wear as a sweatshirt, this elegant knit sweater is suitable for business or casual wear.",
   },
@@ -170,6 +183,7 @@ export const Sweaters = [
     price: 35000,
     size: "L",
     image: require("@/assets/images/sweater4/messageImage_1716983595824.jpg"),
+    brand: "Uniqlo",
     description:
       "The design incorporates a wide variety of art featuring Ghibli's best-known works, as well as the work of Thai artist Kanyada. Through this collection, we hope that the brilliance and energy of Studio Ghibli reaches each and every one of you. Hey, Let’s Go! Body: 100% Cotton/ Rib: 78% Cotton, 22% Polyester. Machine wash cold, Do not Dry Clean, Tumble dry low.",
   },
