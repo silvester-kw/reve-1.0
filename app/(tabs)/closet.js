@@ -102,7 +102,9 @@ export default function Closet() {
         router.push("/login");
         return;
       }
+
       getPopulatedClosetItemsByUserId(user.id).then((items) => {
+        setItems([])
         setItems(items);
       });
     }

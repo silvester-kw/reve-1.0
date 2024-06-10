@@ -38,23 +38,23 @@ export default function ProductCard({ item }) {
           paddingVertical: 8,
           gap: 0,
         }}
+        className="h-[220px]"
       >
-        <View className="flex flex-col rounded-md items-center w-full gap-0 m-0 p-0">
-          <View className="flex flex-row align-middle justify-center items-center ">
+        <View className="flex flex-col rounded-md items-center w-full gap-0 m-0 p-0 justify-center">
+          <View className="flex flex-row align-center justify-center items-center w-fit gap-0 m-0 bg-gray-200 border-2 rounded-md border-slate-200">
             {image ? (
               <Image
                 source={{
                   uri: image,
                 }}
                 style={styles.image}
-                className="rounded-md m-0 p-0 mx-auto"
               />
             ) : (
-              <Image source={require("@/assets/images/placeholder.png")} style={styles.image} className="rounded-md m-0 p-0 mx-auto" />
+              <Image source={require("@/assets/images/placeholder.png")} style={styles.image} />
             )}
           </View>
         </View>
-        <Text style={styles.name} className="text-center">
+        <Text style={styles.name} className="text-center h-9">
           {item.name}
         </Text>
         <View style={styles.priceAndSizeContainer}>
@@ -155,13 +155,11 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 12,
     width: "50%",
   },
   image: {
     width: 100, // Adjust image width and height as needed
     height: 100,
-    marginRight: 16, // Add margin for spacing
   },
   name: {
     fontSize: 18,

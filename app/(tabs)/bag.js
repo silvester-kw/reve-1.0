@@ -83,6 +83,7 @@ export default function Bag() {
       }
 
       getPopulatedBagItems(user.id).then((items) => {
+        setBagItems([])
         setBagItems(items);
         setWaste(
           items.reduce(
