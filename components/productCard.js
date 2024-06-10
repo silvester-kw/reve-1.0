@@ -22,11 +22,10 @@ export default function ProductCard({ item }) {
   return (
     <TouchableOpacity
       onPress={() => {
-        router.push(
-          `./${item.id}?name=${item.name}&brand=${item.brand}&size=${item.size}&image=${item.image}&description=${item.description}&price=${item.price}`
-        );
+        router.push(`./${item.id}?name=${item.name}&brand=${item.brand}&size=${item.size}&image=${item.image}&description=${item.description}&price=${item.price}`);
       }}
-      style={styles.item}>
+      style={styles.item}
+    >
       <View
         style={{
           flexDirection: "column",
@@ -38,26 +37,26 @@ export default function ProductCard({ item }) {
           borderColor: "#aaa",
           paddingVertical: 8,
           gap: 0,
-        }}>
-        <View
-          className="flex flex-col rounded-md items-center w-full gap-0 m-0 p-0">
-        {image ? (
-          <Image
-            source={{
-              uri: image,
-            }}
-            style={styles.image}
-            className="rounded-md m-0 p-0 mx-auto"
-          />
-        ) : (
-          <Image
-            source={require("@/assets/images/placeholder.png")}
-            style={styles.image}
-            className="rounded-md m-0 p-0 mx-auto"
-          />
-        )}
+        }}
+      >
+        <View className="flex flex-col rounded-md items-center w-full gap-0 m-0 p-0">
+          <View className="flex flex-row align-middle justify-center items-center ">
+            {image ? (
+              <Image
+                source={{
+                  uri: image,
+                }}
+                style={styles.image}
+                className="rounded-md m-0 p-0 mx-auto"
+              />
+            ) : (
+              <Image source={require("@/assets/images/placeholder.png")} style={styles.image} className="rounded-md m-0 p-0 mx-auto" />
+            )}
+          </View>
         </View>
-        <Text style={styles.name} className="text-center">{item.name}</Text>
+        <Text style={styles.name} className="text-center">
+          {item.name}
+        </Text>
         <View style={styles.priceAndSizeContainer}>
           <Text style={styles.price} className="text-center">
             {currencyFormatter.format(item.price)}
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
   image: {
     backgroundColor: "red",
     borderRadius: 8,
-    marginHorizontal:"auto",
+    marginHorizontal: "auto",
   },
   details: {
     flex: 1,

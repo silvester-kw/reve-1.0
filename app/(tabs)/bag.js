@@ -144,7 +144,16 @@ export default function Bag() {
                 <Text style={{ fontWeight: "700", color: "white", fontSize: 12 }}>CLEAR ALL</Text>
               </TouchableOpacity>
             </View>
-            <FlatList data={bagItems} renderItem={({ item }) => <RenderClothes item={item} />} keyExtractor={(item) => item.itemId} scrollEnabled={false} className="w-full overflow-visible mb-8" />
+            {bagItems.length === 0 ? (
+              <View className="flex justify-center border-2 rounded-lg my-4 py-4">
+                <View className="justify-center items-center">
+                  <Image source={require("@/assets/images/bagIcon.png")} />
+                  <Text className="font-bold text-lg text-center">Your Bag is Empty</Text>
+                </View>
+              </View>
+            ) : (
+              <FlatList data={bagItems} renderItem={({ item }) => <RenderClothes item={item} />} keyExtractor={(item) => item.itemId} scrollEnabled={false} className="w-full overflow-visible mb-8" />
+            )}
             <View className="flex justify-center border-2 rounded-lg">
               <Text className="font-bold text-lg text-center">Positive Savings</Text>
               {/* {!test && <Text className="text-center">No contribution yet. Let's rent more!</Text>}

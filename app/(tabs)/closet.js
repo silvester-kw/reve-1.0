@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Platform,
-  StatusBar,
-  SafeAreaView,
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-  Image,
-} from "react-native";
+import { View, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, StyleSheet, FlatList, Image } from "react-native";
 
 import Header from "../../components/Header";
 import { ClosetData } from "../../data/closet";
@@ -51,9 +41,7 @@ const RenderItem = ({ item }) => {
   }, []);
 
   return (
-    <View
-      style={styles.item}
-      className="shadow-md overflow-visible m-0 w-full justify-center items-center gap-0">
+    <View style={styles.item} className="shadow-md overflow-visible m-0 w-full justify-center items-center gap-0">
       {imageUrl ? (
         <Image
           source={{
@@ -63,11 +51,7 @@ const RenderItem = ({ item }) => {
           className="flex flex-1 rounded-md m-0 p-0 mx-auto max-w-full max-h-full w-full h-full mr-2"
         />
       ) : (
-        <Image
-          source={require("@/assets/images/placeholder.png")}
-          style={styles.image}
-          className="flex flex-1 rounded-md m-0 p-0 mx-auto max-w-full max-h-full w-full h-full mr-2"
-        />
+        <Image source={require("@/assets/images/placeholder.png")} style={styles.image} className="flex flex-1 rounded-md m-0 p-0 mx-auto max-w-full max-h-full w-full h-full mr-2" />
       )}
       <View style={styles.details}>
         <Text style={styles.name}>{product.name}</Text>
@@ -82,7 +66,8 @@ const RenderItem = ({ item }) => {
             {
               backgroundColor: status === "Return Now!" ? "#B71800" : "black",
             },
-          ]}>
+          ]}
+        >
           <Text style={styles.buttonText}>{status}</Text>
         </View>
       </View>
@@ -98,9 +83,7 @@ export default function Closet() {
 
   const currentDay = new Date();
   const nextMonday = new Date();
-  nextMonday.setDate(
-    currentDay.getDate() + ((1 + 7 - currentDay.getDay()) % 7)
-  );
+  nextMonday.setDate(currentDay.getDate() + ((1 + 7 - currentDay.getDay()) % 7));
   const batchDates = [];
   for (let i = 1; i <= 8; i++) {
     const start = new Date(nextMonday);
@@ -133,9 +116,7 @@ export default function Closet() {
           <Header title="My Closet" />
           <View className="flex flex-col items-center justify-center p-2 h-full w-full bg-slate-100 overflow-visible">
             {items.length === 0 ? (
-              <Text className="text-center text-lg text-gray-500 mt-4">
-                Your closet is empty
-              </Text>
+              <Text className="text-center text-lg font-bold text-gray-500 mt-4 ">Your closet is empty</Text>
             ) : (
               <FlatList
                 data={items}
