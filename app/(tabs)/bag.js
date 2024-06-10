@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  Platform,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { FlatList, View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 import Header from "@/components/Header";
 import { useNavigation, usePathname, useRouter } from "expo-router";
@@ -30,22 +19,11 @@ const ShirtRecommendations = () => {
     <View style={styles.shirtItem}>
       <Image source={item.image} style={styles.shirtImage} />
       <Text style={styles.shirtName}>{item.name}</Text>
-      <Text style={styles.shirtPrice}>
-        {currencyFormatter.format(item.price)}
-      </Text>
+      <Text style={styles.shirtPrice}>{currencyFormatter.format(item.price)}</Text>
     </View>
   );
 
-  return (
-    <FlatList
-      data={Skirts}
-      renderItem={renderSkirts}
-      keyExtractor={(item) => item.id}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      style={styles.shirtList}
-    />
-  );
+  return <FlatList data={Skirts} renderItem={renderSkirts} keyExtractor={(item) => item.id} horizontal showsHorizontalScrollIndicator={false} style={styles.shirtList} />;
 };
 
 function RenderClothes({ item }) {
@@ -71,11 +49,7 @@ function RenderClothes({ item }) {
             className="rounded-md m-0 p-0 mx-auto max-w-full max-h-full w-full h-full"
           />
         ) : (
-          <Image
-            source={require("@/assets/images/placeholder.png")}
-            style={styles.image}
-            className="rounded-md m-0 p-0 mx-auto max-w-full max-h-full w-full h-full"
-          />
+          <Image source={require("@/assets/images/placeholder.png")} style={styles.image} className="rounded-md m-0 p-0 mx-auto max-w-full max-h-full w-full h-full" />
         )}
       </View>
       <View className="flex flex-col gap-1">
@@ -84,9 +58,7 @@ function RenderClothes({ item }) {
           <Text className="text-sm">{product.brand}</Text>
           <Text className="text-sm font-bold just">{product.size}</Text>
         </View>
-        <Text className="text-sm mr-2">
-          {currencyFormatter.format(product.price)} / Batch
-        </Text>
+        <Text className="text-sm mr-2">{currencyFormatter.format(product.price)} / Batch</Text>
       </View>
     </View>
   );
@@ -137,9 +109,7 @@ export default function Bag() {
 
   const currentDay = new Date();
   const nextMonday = new Date();
-  nextMonday.setDate(
-    currentDay.getDate() + ((1 + 7 - currentDay.getDay()) % 7)
-  );
+  nextMonday.setDate(currentDay.getDate() + ((1 + 7 - currentDay.getDay()) % 7));
   const batchDates = [];
   for (let i = 1; i <= 8; i++) {
     const start = new Date(nextMonday);
@@ -168,72 +138,40 @@ export default function Bag() {
           <ScrollView className="px-8">
             <View style={styles.row1}>
               <TouchableOpacity style={styles.buttonBlack}>
-                <Text
-                  style={{ fontWeight: "700", color: "white", fontSize: 12 }}>
-                  SELECT ALL
-                </Text>
+                <Text style={{ fontWeight: "700", color: "white", fontSize: 12 }}>SELECT ALL</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.buttonRed}
-                onPress={handleClearAll}>
-                <Text
-                  style={{ fontWeight: "700", color: "white", fontSize: 12 }}>
-                  CLEAR ALL
-                </Text>
+              <TouchableOpacity style={styles.buttonRed} onPress={handleClearAll}>
+                <Text style={{ fontWeight: "700", color: "white", fontSize: 12 }}>CLEAR ALL</Text>
               </TouchableOpacity>
             </View>
-            <FlatList
-              data={bagItems}
-              renderItem={({ item }) => <RenderClothes item={item} />}
-              keyExtractor={(item) => item.itemId}
-              scrollEnabled={false}
-              className="w-full overflow-visible mb-8"
-            />
+            <FlatList data={bagItems} renderItem={({ item }) => <RenderClothes item={item} />} keyExtractor={(item) => item.itemId} scrollEnabled={false} className="w-full overflow-visible mb-8" />
             <View className="flex justify-center border-2 rounded-lg">
-              <Text className="font-bold text-lg text-center">
-                Positive Savings
-              </Text>
+              <Text className="font-bold text-lg text-center">Positive Savings</Text>
               {/* {!test && <Text className="text-center">No contribution yet. Let's rent more!</Text>}
               {test && ( */}
               <View>
-                <Text className="text-center">
-                  Yay! Look how much you have impact the world!
-                </Text>
+                <Text className="text-center">Yay! Look how much you have impact the world!</Text>
                 <View className="flex flex-row px-4 pt-2 justify-center">
                   <View className="flex">
                     <View className="flex flex-row align-item justify-center">
-                      <Image
-                        source={require("@assets/images/Positive-Savings/Vector.png")}
-                      />
+                      <Image source={require("@assets/images/Positive-Savings/Vector.png")} />
                     </View>
-                    <Text className="text-center font-bold mt-1">
-                      {waste.textile} KG
-                    </Text>
+                    <Text className="text-center font-bold mt-1">{Number(waste.textile).toFixed(2)} KG</Text>
                     <Text className="text-center font-bold">Textile Waste</Text>
                   </View>
                   <View className="flex  absolute pt-2">
                     <View className="flex  flex-row align-item justify-center">
-                      <Image
-                        source={require("@assets/images/Positive-Savings/Vector(1).png")}
-                      />
+                      <Image source={require("@assets/images/Positive-Savings/Vector(1).png")} />
                     </View>
-                    <Text className="text-center font-bold mt-1">
-                      {waste.water} L
-                    </Text>
+                    <Text className="text-center font-bold mt-1">{Number(waste.water).toFixed(2)} L</Text>
                     <Text className="text-center font-bold">Water</Text>
                   </View>
                   <View className="flex ml-28">
                     <View className="flex flex-row  mt-1 align-item justify-center">
-                      <Image
-                        source={require("@assets/images/Positive-Savings/Vector(2).png")}
-                      />
+                      <Image source={require("@assets/images/Positive-Savings/Vector(2).png")} />
                     </View>
-                    <Text className="text-center font-bold mt-2">
-                      {waste.carbon} L
-                    </Text>
-                    <Text className="text-center font-bold">
-                      Carbon Dioxide
-                    </Text>
+                    <Text className="text-center font-bold mt-2">{Number(waste.carbon).toFixed(2)} L</Text>
+                    <Text className="text-center font-bold">Carbon Dioxide</Text>
                   </View>
                 </View>
               </View>
@@ -245,17 +183,9 @@ export default function Bag() {
             <ShirtRecommendations />
             <View className="flex flex-row justify-between">
               <Text className="font-bold text-lg mt-6">Subtotal</Text>
-              <Text className="font-bold text-lg mt-6">
-                {currencyFormatter.format(Subtotal)}
-              </Text>
+              <Text className="font-bold text-lg mt-6">{currencyFormatter.format(Subtotal)}</Text>
             </View>
-            <Button
-              mode="contained"
-              onPress={() => router.push({ pathname: "/purchase/" })}
-              className="my-4 rounded-md h-12 items-center justify-center"
-              buttonColor="black"
-              labelStyle={{ width: "100%" }}
-              textColor="white">
+            <Button mode="contained" onPress={() => router.push({ pathname: "/purchase/" })} className="my-4 rounded-md h-12 items-center justify-center" buttonColor="black" labelStyle={{ width: "100%" }} textColor="white">
               Checkout
             </Button>
           </ScrollView>
