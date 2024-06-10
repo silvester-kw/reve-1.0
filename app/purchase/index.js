@@ -14,7 +14,7 @@ import { useUser } from "@/hooks/useUser";
 import { useEffect, useState } from "react";
 
 import { getDownloadUrl } from "@/firebase/storage";
-import { getPopulatedBagItems } from "@/db/user";
+import { clearBag, getPopulatedBagItems } from "@/db/user";
 import { addClosetItems } from "@/db/closetItem";
 
 const currencyFormatter = new Intl.NumberFormat("id-ID", {
@@ -97,7 +97,8 @@ export default function Purchase() {
 
     addClosetItems(user.id, clothes)
       .then(() => {
-        router.push("/purchase/confirmed");
+        clearBag(user.id);
+        router.replace("/purchase/confirmed");
       })
       .catch((e) => {
         alert(e.message);

@@ -13,7 +13,7 @@ import {
 
 import Header from "../../components/Header";
 import { ClosetData } from "../../data/closet";
-import { useRouter } from "expo-router";
+import { usePathname, useRouter } from "expo-router";
 import { useUser } from "@/hooks/useUser";
 
 import { getPopulatedClosetItemsByUserId } from "@/db/closetItem";
@@ -51,7 +51,9 @@ const RenderItem = ({ item }) => {
   }, []);
 
   return (
-    <View style={styles.item} className="shadow-md overflow-visible m-0 w-full justify-center items-center gap-0">
+    <View
+      style={styles.item}
+      className="shadow-md overflow-visible m-0 w-full justify-center items-center gap-0">
       {imageUrl ? (
         <Image
           source={{
@@ -90,6 +92,7 @@ const RenderItem = ({ item }) => {
 
 export default function Closet() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const [items, setItems] = useState([]);
 
@@ -110,14 +113,17 @@ export default function Closet() {
   const { user } = useUser();
 
   useEffect(() => {
-    if (!user) {
-      router.push("/login");
+    if (pathname === "/closet") {
+      if (!user) {
+        router.replace("/");
+        router.push("/login");
+        return;
+      }
+      getPopulatedClosetItemsByUserId(user.id).then((items) => {
+        setItems(items);
+      });
     }
-
-    getPopulatedClosetItemsByUserId(user.id).then((items) => {
-      setItems(items);
-    });
-  }, []);
+  }, [pathname]);
 
   return (
     <>
@@ -125,15 +131,26 @@ export default function Closet() {
         <StatusBar barStyle="light-content" backgroundColor="#000" />
         <View style={styles.container}>
           <Header title="My Closet" />
-          {/* <Text>{batchDates[3][0]}</Text> */}
           <View className="flex flex-col items-center justify-center p-2 h-full w-full bg-slate-100 overflow-visible">
-            <FlatList
-              data={items}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => <RenderItem item={item} />}
-              className="w-full overflow-visible"
-              contentContainerStyle={{ gap: 8, justifyContent: "center", alignItems: "center", width: "100%", padding: 8}}
-            />
+            {items.length === 0 ? (
+              <Text className="text-center text-lg text-gray-500 mt-4">
+                Your closet is empty
+              </Text>
+            ) : (
+              <FlatList
+                data={items}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => <RenderItem item={item} />}
+                className="w-full overflow-visible"
+                contentContainerStyle={{
+                  gap: 8,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  padding: 8,
+                }}
+              />
+            )}
           </View>
         </View>
       </SafeAreaView>

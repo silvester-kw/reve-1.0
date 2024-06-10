@@ -1,6 +1,22 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, SafeAreaView, StatusBar, Platform, TouchableOpacity, ScrollView } from "react-native";
-import { Menu, MenuOptions, MenuOption, MenuTrigger, MenuProvider } from "react-native-popup-menu";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+  MenuProvider,
+} from "react-native-popup-menu";
 
 import { Link, useNavigation, useRouter } from "expo-router";
 
@@ -39,7 +55,7 @@ export default function Header({ title }) {
         <Menu>
           <MenuTrigger>
             <Image
-              source={{ uri:"https://i.pravatar.cc/64" }} // Replace with your profile icon path
+              source={{ uri: "https://i.pravatar.cc/64" }} // Replace with your profile icon path
               style={styles.profileLogo}
             />
           </MenuTrigger>
@@ -52,11 +68,12 @@ export default function Header({ title }) {
       ) : (
         <TouchableOpacity>
           <Link href="/login">
-            <Avatar.Image
-              size={40}
-              source={require("@/assets/images/pp-icon.png")} // Replace with your profile icon path
-              style={styles.profileLogo}
-            />
+            <View className="flex">
+              <Image
+                source={require("@/assets/images/pp-icon.png")} // Replace with your profile icon path
+                style={styles.profileLogo}
+              />
+            </View>
           </Link>
         </TouchableOpacity>
       )}
@@ -145,6 +162,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "purple",
     borderRadius: 20,
+    maxHeight: 40,
+    maxWidth: 40,
+    backgroundColor: "white",
   },
   menuText: {
     padding: 10,

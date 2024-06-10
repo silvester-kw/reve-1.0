@@ -200,6 +200,11 @@ const mockProduct = async (product, type) => {
         ...product,
         image: file,
         type: type,
+        waste: { // randomize waste
+          textile: Math.floor(Math.random() * 20) / 10,
+          water: Math.floor(Math.random() * 20) / 10,
+          carbon: Math.floor(Math.random() * 10) / 10,
+        }
       };
       await createProduct(newProduct);
     })

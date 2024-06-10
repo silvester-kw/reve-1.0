@@ -156,6 +156,24 @@ const getPopulatedClosetItemsByUserId = async (userId) => {
   return await populateClosetItems(closetItems);
 };
 
+const getWaste = async (userId) => {
+  if (!userId) {
+    return null;
+  }
+
+  const closetItems = await getPopulatedClosetItemsByUserId(userId);
+
+  return closetItems.reduce(
+    (acc, closetItem) => {
+      acc.textile += closetItem.product.waste.textile;
+      acc.water += closetItem.product.waste.water;
+      acc.carbon += closetItem.product.waste.carbon;
+      return acc;
+    },
+    { textile: 0, water: 0, carbon: 0 }
+  );
+};
+
 export {
   addClosetItem,
   getClosetItem,
@@ -164,4 +182,5 @@ export {
   populateClosetItems,
   getPopulatedClosetItemsByUserId,
   addClosetItems,
+  getWaste,
 };

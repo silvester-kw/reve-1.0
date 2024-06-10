@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 import Header from "@/components/Header";
-import { useNavigation, useRouter } from "expo-router";
+import { useNavigation, usePathname, useRouter } from "expo-router";
 import { Skirts } from "@/data/catalog";
 
 import { useUser } from "@/hooks/useUser";
@@ -94,24 +94,42 @@ function RenderClothes({ item }) {
 
 export default function Bag() {
   const router = useRouter();
+  const pathname = usePathname();
+
   const { user } = useUser();
 
   const [bagItems, setBagItems] = useState([]);
+  const [waste, setWaste] = useState({ textile: 0, water: 0, carbon: 0 });
   const [Subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
-    if (!user) {
-      router.push("/login");
-    }
+    if (pathname == "/bag") {
+      if (!user) {
+        router.replace("/");
+        router.push("/login");
+        return;
+      }
 
-    getPopulatedBagItems(user.id).then((items) => {
-      setBagItems(items);
-    });
-  }, []);
+      getPopulatedBagItems(user.id).then((items) => {
+        setBagItems(items);
+        setWaste(
+          items.reduce(
+            (acc, item) => {
+              acc.textile += item.product.waste.textile;
+              acc.water += item.product.waste.water;
+              acc.carbon += item.product.waste.carbon;
+              return acc;
+            },
+            { textile: 0, water: 0, carbon: 0 }
+          )
+        );
+      });
+    }
+  }, [pathname]);
 
   useEffect(() => {
     let total = 0;
-    bagItems.forEach((item) => {
+    bagItems?.forEach((item) => {
       total += item.product.price;
     });
     setSubtotal(total);
@@ -188,7 +206,9 @@ export default function Bag() {
                         source={require("@assets/images/Positive-Savings/Vector.png")}
                       />
                     </View>
-                    <Text className="text-center font-bold mt-1">1.5 M</Text>
+                    <Text className="text-center font-bold mt-1">
+                      {waste.textile} KG
+                    </Text>
                     <Text className="text-center font-bold">Textile Waste</Text>
                   </View>
                   <View className="flex  absolute pt-2">
@@ -197,7 +217,9 @@ export default function Bag() {
                         source={require("@assets/images/Positive-Savings/Vector(1).png")}
                       />
                     </View>
-                    <Text className="text-center font-bold mt-1">2 L</Text>
+                    <Text className="text-center font-bold mt-1">
+                      {waste.water} L
+                    </Text>
                     <Text className="text-center font-bold">Water</Text>
                   </View>
                   <View className="flex ml-28">
@@ -206,7 +228,9 @@ export default function Bag() {
                         source={require("@assets/images/Positive-Savings/Vector(2).png")}
                       />
                     </View>
-                    <Text className="text-center font-bold mt-2">1 KG</Text>
+                    <Text className="text-center font-bold mt-2">
+                      {waste.carbon} L
+                    </Text>
                     <Text className="text-center font-bold">
                       Carbon Dioxide
                     </Text>

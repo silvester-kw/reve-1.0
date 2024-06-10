@@ -27,7 +27,11 @@ export default function Login() {
       login(email, password)
         .then(() => {
           alert("Logged in");
-          navigation.dispatch(StackActions.popToTop());
+          if (router.canGoBack()) {
+            navigation.dispatch(StackActions.popToTop());
+          } else {
+            router.replace("/(tabs)");
+          }
         })
         .catch((error) => {
           alert(error);
@@ -39,7 +43,11 @@ export default function Login() {
       register(email, password, { name })
         .then(() => {
           alert("Registered");
-          navigation.dispatch(StackActions.popToTop());
+          if (router.canGoBack()) {
+            navigation.dispatch(StackActions.popToTop());
+          } else {
+            router.replace("/(tabs)");
+          }
         })
         .catch((error) => {
           alert(error);
@@ -100,17 +108,29 @@ export default function Login() {
         )}
       </View>
       <View className="w-full flex flex-col items-center gap-y-4">
-        <Button mode="contained" className="w-full rounded-lg h-12 items-center justify-center" onPress={handleSubmit} buttonColor="#212121" textColor="white" labelStyle={{ width: "100%" }} loading={isLoading}>
-          <Text className="text-lg w-full text-center">{isLogin ? "Login" : "Sign Up"}</Text>
+        <Button
+          mode="contained"
+          className="w-full rounded-lg h-12 items-center justify-center"
+          onPress={handleSubmit}
+          buttonColor="#212121"
+          textColor="white"
+          labelStyle={{ width: "100%" }}
+          loading={isLoading}>
+          <Text className="text-lg w-full text-center">
+            {isLogin ? "Login" : "Sign Up"}
+          </Text>
         </Button>
         <View className="flex flex-row items-center gap-x-2">
-          <Text className="text-lg">{isLogin ? "Don't have an account?" : "Already have an account?"}</Text>
+          <Text className="text-lg">
+            {isLogin ? "Don't have an account?" : "Already have an account?"}
+          </Text>
           <TouchableOpacity
             onPress={() => {
               setIsLogin(!isLogin);
-            }}
-          >
-            <Text className="text-blue-500 text-lg">{isLogin ? "Sign Up" : "Login"}</Text>
+            }}>
+            <Text className="text-blue-500 text-lg">
+              {isLogin ? "Sign Up" : "Login"}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
